@@ -10,7 +10,6 @@
     "preview": "vite preview --host",
     "check": "tsc --noEmit",
     "format": "prettier --write ."
-    
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
