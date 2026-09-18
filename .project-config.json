@@ -1,0 +1,34 @@
+{
+  "build_command": "pnpm run build",
+  "capabilities": [],
+  "dev_command": "pnpm run dev",
+  "env_vars": {},
+  "experiments": null,
+  "git_remote": {
+    "repo_url": "https://7f0548f6b28a1758d9bf7be630d36cb4.artifacts.cloudflare.net/git/prod/TyPropMaNqwYTvacqw5Jpj.git",
+    "expiration": "2026-09-16T15:33:02.315Z",
+    "token": "art_v2_x_63d0cda02931ba9bd2e3f9ac6715513a81de57da?expires=1789572782",
+    "backend": "GIT_BACKEND_ARTIFACTS"
+  },
+  "name": "serveekay-rebuild",
+  "path": "/home/ubuntu/serveekay-rebuild",
+  "port": 3000,
+  "secrets": {
+    "BUILT_IN_FORGE_API_KEY": "JYLLqrshZd4PHgePoEkCye",
+    "BUILT_IN_FORGE_API_URL": "https://forge.manus.ai",
+    "JWT_SECRET": "C5wVVQyNXZxyei4K8DQ6xr",
+    "OAUTH_SERVER_URL": "https://api.manus.im",
+    "OWNER_NAME": "Abdullah ibrahim",
+    "OWNER_OPEN_ID": "XSK2jNBAnDpFo7wcf78PtC",
+    "VITE_ANALYTICS_ENDPOINT": "https://manus-analytics.com",
+    "VITE_ANALYTICS_WEBSITE_ID": "e037925c-c37f-4141-b1e9-dde4db824a68",
+    "VITE_APP_ID": "TyPropMaNqwYTvacqw5Jpj",
+    "VITE_APP_LOGO": "",
+    "VITE_APP_TITLE": "Serveekay — Digital Product Designer",
+    "VITE_FRONTEND_FORGE_API_KEY": "Umkph76NCPoxbkwUh8TFaD",
+    "VITE_FRONTEND_FORGE_API_URL": "https://forge.manus.ai",
+    "VITE_OAUTH_PORTAL_URL": "https://manus.im"
+  },
+  "template_id": "web-static",
+  "test_command": "pnpm test"
+}

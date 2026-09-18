@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@font-face { font-family: "Bricolage"; src: url("/fonts/bricolage-regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Bricolage"; src: url("/fonts/bricolage-semibold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Bricolage"; src: url("/fonts/bricolage-bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Bricolage"; src: url("/fonts/bricolage-extrabold.woff2") format("woff2"); font-weight: 800; font-display: swap; }
+@font-face { font-family: "Haas"; src: url("/fonts/haas-roman.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Haas"; src: url("/fonts/haas-medium.ttf") format("truetype"); font-weight: 600; font-display: swap; }
+
+@theme inline {
+  --color-paper: #f1f1ef;
+  --color-ink: #101112;
+  --color-acid: #d8ff3e;
+  --color-sand: #e9e3da;
+  --color-line: #c9c9c4;
+  --font-sans: "Haas", Arial, sans-serif;
+  --font-display: "Bricolage", Arial, sans-serif;
+  --ease-fluid: cubic-bezier(.22, 1, .36, 1);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 7rem; background: #f1f1ef; }
+body { margin: 0; overflow-x: clip; background: #f1f1ef; color: #101112; font-family: "Haas", Arial, sans-serif; }
+body::before { content: ""; position: fixed; z-index: 1000; inset: 0; pointer-events: none; opacity: .035; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E"); }
+a, button { -webkit-tap-highlight-color: transparent; }
+::selection { background: #d8ff3e; color: #101112; }
+
+.shell { width: 100%; padding-inline: clamp(1rem, 2.25vw, 2.25rem); }
+.section-space { padding-block: clamp(7rem, 12vw, 13rem); }
+.section-title { font-size: clamp(3.75rem, 8.2vw, 9rem); line-height: .84; letter-spacing: -.072em; }
+.display-copy { font-size: clamp(3rem, 6.4vw, 7rem); line-height: .92; letter-spacing: -.062em; }
+.eyebrow { font-family: "Bricolage", sans-serif; font-size: .7rem; font-weight: 700; line-height: 1; letter-spacing: .08em; text-transform: uppercase; }
+
+.wordmark { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); align-items: center; height: min(28vw, 27rem); overflow: hidden; font-family: "Bricolage", sans-serif; font-size: min(27vw, 26rem); font-weight: 800; line-height: .72; }
+.wordmark > span { min-width: 0; text-align: center; transform: scaleX(.51); }
+.wordmark-small { font-family: "Bricolage", sans-serif; font-size: min(22.5vw, 23rem); font-weight: 800; line-height: .72; letter-spacing: -.105em; transform: scaleX(.78); transform-origin: center; }
+
+.hero-reel { animation: reel 25s steps(1, end) infinite; }
+@keyframes reel { 0%, 18% { transform: translateX(0); } 20%, 38% { transform: translateX(-100%); } 40%, 58% { transform: translateX(-200%); } 60%, 78% { transform: translateX(-300%); } 80%, 98% { transform: translateX(-400%); } 100% { transform: translateX(0); } }
+
+.service-row::before { content: ""; position: absolute; z-index: -1; inset: 0 -2.25rem; background: #d8ff3e; transform: scaleY(0); transform-origin: bottom; transition: transform .5s cubic-bezier(.22, 1, .36, 1); }
+.service-row:hover::before, .service-row:focus-within::before { transform: scaleY(1); }
+.service-row:hover, .service-row:focus-within { color: #101112; }
+.service-row:hover .service-muted, .service-row:focus-within .service-muted { color: #383a31; }
+.service-row .service-preview { opacity: 0; transform: translateY(-43%) rotate(5deg) scale(.85); transition: opacity .35s ease, transform .5s cubic-bezier(.22, 1, .36, 1); }
+.service-row:hover .service-preview, .service-row:focus-within .service-preview { opacity: 1; transform: translateY(-50%) rotate(-3deg) scale(1); }
+
+.media-zoom img { transition: transform .9s cubic-bezier(.22, 1, .36, 1); }
+.media-zoom:hover img { transform: scale(1.035); }
+.underline-link::after { content: ""; position: absolute; inset-inline: 0; bottom: -.2rem; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .4s cubic-bezier(.22, 1, .36, 1); }
+.underline-link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+.reveal-ready [data-reveal] { opacity: 0; transform: translateY(2.5rem); transition: opacity .9s cubic-bezier(.22, 1, .36, 1), transform .9s cubic-bezier(.22, 1, .36, 1); }
+.reveal-ready [data-reveal].is-visible { opacity: 1; transform: none; }
+.site-cursor { position: fixed; z-index: 200; top: 0; left: 0; width: 4.75rem; height: 4.75rem; border-radius: 999px; display: grid; place-items: center; pointer-events: none; background: #d8ff3e; color: #101112; font-family: "Bricolage", sans-serif; font-size: .68rem; font-weight: 700; text-transform: uppercase; transform: translate(-50%, -50%) scale(0); transition: transform .3s cubic-bezier(.22, 1, .36, 1); }
+.site-cursor.is-active { transform: translate(-50%, -50%) scale(1); }
+
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .faq-plus::after { transform: rotate(0); }
+.faq-plus::before, .faq-plus::after { content: ""; position: absolute; top: 50%; left: 0; width: 1.1rem; height: 1px; background: currentColor; transition: transform .3s ease; }
+.faq-plus::after { transform: rotate(90deg); }
+
+@media (max-width: 767px) {
+  .wordmark { height: 30vw; font-size: 29vw; }
+  .wordmark-small { font-size: 24vw; }
+  .service-row::before { inset-inline: -1rem; }
+}
+@media (pointer: coarse) { .site-cursor { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-reel { animation: none; }
+  .reveal-ready [data-reveal] { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
