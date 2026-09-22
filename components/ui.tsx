@@ -1,14 +1,37 @@
 import Link from "next/link";
 
-export function SectionHeading({ index, eyebrow, children, note, light = false }: { index: string; eyebrow: string; children: React.ReactNode; note?: string; light?: boolean }) {
+export function SectionIntro({ index, eyebrow, title, copy, light = false }: { index: string; eyebrow: string; title: React.ReactNode; copy?: string; light?: boolean }) {
   return (
-    <div data-reveal className="mb-16 md:mb-28">
-      <div className={`mb-10 flex items-center justify-between border-t pt-3 md:mb-14 ${light ? "border-white/35" : "border-ink"}`}><p className="eyebrow">{eyebrow}</p><span className={`text-xs ${light ? "text-white/70" : "text-black/65"}`}>({index})</span></div>
-      <div className="grid gap-8 md:grid-cols-[1fr_3fr] md:gap-[5vw]"><div /><div><h2 className="section-title">{children}</h2>{note && <p className={`mt-8 max-w-md text-lg ${light ? "text-white/70" : "text-black/65"}`}>{note}</p>}</div></div>
-    </div>
+    <header className={`section-intro ${light ? "section-intro--light" : ""}`} data-reveal>
+      <div className="section-intro__meta">
+        <span>{eyebrow}</span>
+        <span>({index})</span>
+      </div>
+      <div className="section-intro__body">
+        <h2>{title}</h2>
+        {copy && <p>{copy}</p>}
+      </div>
+    </header>
   );
 }
 
-export function ButtonLink({ href, children, light = false }: { href: string; children: React.ReactNode; light?: boolean }) {
-  return <Link href={href} className={`inline-flex min-h-12 items-center justify-center gap-8 rounded-lg px-5 font-display text-xs font-bold transition duration-300 hover:-translate-y-0.5 ${light ? "bg-white text-ink" : "bg-ink text-white"}`}>{children}<span>↗</span></Link>;
+export function ButtonLink({ href, children, light = false, className = "" }: { href: string; children: React.ReactNode; light?: boolean; className?: string }) {
+  return (
+    <Link href={href} className={`pill-button ${light ? "pill-button--light" : ""} ${className}`}>
+      <span>{children}</span>
+      <i aria-hidden="true">↗</i>
+    </Link>
+  );
+}
+
+export function Marquee({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
+  return (
+    <div className={`marquee ${dark ? "marquee--dark" : ""}`} aria-hidden="true">
+      <div className="marquee__track">
+        {Array.from({ length: 4 }, (_, index) => (
+          <span key={index}>{children}<i className="wire-globe" /></span>
+        ))}
+      </div>
+    </div>
+  );
 }

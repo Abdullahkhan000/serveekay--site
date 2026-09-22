@@ -1,5 +1,5 @@
 import Link from "next/link";
 
 export default function NotFound() {
-  return <main className="shell grid min-h-screen place-items-center py-20 text-center"><div><p className="eyebrow mb-8">404 / Lost in the pixels</p><h1 className="section-title">Nothing here.<br />Still looks nice.</h1><Link href="/" className="mt-10 inline-flex rounded-lg bg-ink px-6 py-4 font-display text-xs font-bold text-white">Back to portfolio ↗</Link></div></main>;
+  return <div className="selfer" id="top"><main className="selfer-not-found"><div><span>404 / Page not found</span><h1>Wrong turn<span>.</span></h1><p>This page isn&apos;t here, but the work is just around the corner.</p><Link className="selfer-button" href="/">Back to portfolio <span>→</span></Link></div></main></div>;
 }

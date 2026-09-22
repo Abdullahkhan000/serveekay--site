@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./selfer.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://serveekay.com"),
   title: { default: "Serveekay — Product Designer", template: "%s — Serveekay" },
-  description: "Waleed is a senior product designer crafting intuitive, high-impact digital experiences that drive results.",
+  description: "Waleed is a product designer crafting clear, useful digital experiences at Serveekay.",
   keywords: ["product designer", "UI UX designer", "web design", "mobile app design", "Serveekay", "Waleed"],
   openGraph: { title: "Serveekay — Product Designer", description: "Intuitive digital products designed to drive results.", type: "website" },
 };

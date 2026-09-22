@@ -1,6 +1,6 @@
 # Serveekay Portfolio
 
-A premium product-design portfolio built with Next.js, React, TypeScript, and Tailwind CSS.
+A dark editorial product-design portfolio using Waleed's own Serveekay imagery and content. Built with the existing Next.js, React, TypeScript, and Tailwind CSS setup.
 
 ## Local development
 
@@ -26,3 +26,5 @@ npm start
 - `components/` — interactive and shared UI components
 - `data/` — portfolio content and project metadata
 - `public/` — local WebP imagery and fonts
+
+See [`CUSTOMIZATION.md`](./CUSTOMIZATION.md) for the video, project, image, and content update tutorial.
