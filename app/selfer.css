@@ -464,3 +464,32 @@
 @media (prefers-reduced-motion: reduce) {
   .selfer::after { transform: none; }
 }
+
+
+/* Full Lenis motion layer */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.selfer [data-parallax-speed] { transform: translate3d(0, var(--parallax-offset, 0px), 0); will-change: transform; }
+.selfer-hero__photo { transition: transform .18s linear; }
+.selfer-hero__orb { transform: translate3d(0, calc(var(--parallax-offset, 0px) * -0.5), 0); }
+.selfer.has-pointer .selfer-hero__orb--one { box-shadow: inset 0 0 80px rgba(183,255,60,.1), 0 0 calc(70px + var(--lenis-velocity, 0) * 90px) rgba(183,255,60,.08); }
+.selfer.is-motion-ready [data-animate] { opacity: 0; transform: translate3d(0, 45px, 0) scale(.985); filter: blur(5px); }
+.selfer.is-motion-ready [data-animate].is-visible { opacity: 1; transform: none; filter: blur(0); }
+.selfer.is-motion-ready .selfer-services__grid [data-animate]:nth-child(2),
+.selfer.is-motion-ready .selfer-work-card:nth-child(3n + 2) { transition-delay: .08s; }
+.selfer.is-motion-ready .selfer-services__grid [data-animate]:nth-child(3),
+.selfer.is-motion-ready .selfer-work-card:nth-child(3n + 3) { transition-delay: .16s; }
+.selfer-work-card figure::after { position: absolute; inset: 0; background: linear-gradient(120deg, transparent 35%, rgba(183,255,60,.16) 50%, transparent 65%); content: ""; transform: translateX(-120%); transition: transform .85s var(--ease-fluid); pointer-events: none; }
+.selfer-work-card:hover figure::after { transform: translateX(120%); }
+.selfer-service__icon svg { transition: transform .7s var(--ease-fluid); }
+.selfer-service:hover .selfer-service__icon svg { transform: rotate(-8deg) scale(1.12); }
+.selfer-highlights__inner strong { transition: transform .5s var(--ease-fluid), color .3s; }
+.selfer-highlights__inner div:hover strong { color: #e4ffad; transform: translateY(-5px); }
+.selfer-testimonials__body { transform: translateY(calc(var(--lenis-velocity, 0) * -2px)); transition: transform .35s var(--ease-fluid); }
+@media (prefers-reduced-motion: reduce) {
+  .selfer [data-parallax-speed], .selfer-hero__orb { transform: none !important; }
+  .selfer.is-motion-ready [data-animate] { opacity: 1; filter: none; }
+  .selfer-work-card figure::after { display: none; }
+}

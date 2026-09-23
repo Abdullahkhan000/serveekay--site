@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 import { capabilities, disciplines, identity, projects, services, testimonials, VIDEO_POSTER, VIDEO_SRC, type Project } from "@/data/site";
+import { EncryptedText } from "@/components/encrypted-text";
 
 const links = [
   { id: "home", label: "Home" },
@@ -35,10 +36,22 @@ function useReveals() {
       root.classList.add("has-pointer");
     };
     const onScroll = () => root.style.setProperty("--scroll-progress", `${window.scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight)}`);
+    const parallaxItems = [...root.querySelectorAll<HTMLElement>("[data-parallax-speed]")];
+    const updateParallax = () => {
+      const viewport = window.innerHeight;
+      parallaxItems.forEach((element) => {
+        const speed = Number(element.dataset.parallaxSpeed || 0);
+        const rect = element.getBoundingClientRect();
+        const offset = (rect.top + rect.height / 2 - viewport / 2) * speed;
+        element.style.setProperty("--parallax-offset", `${offset.toFixed(2)}px`);
+      });
+    };
     window.addEventListener("pointermove", onPointerMove, { passive: true });
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", updateParallax, { passive: true });
     onScroll();
-    return () => { observer.disconnect(); window.removeEventListener("pointermove", onPointerMove); window.removeEventListener("scroll", onScroll); root.classList.remove("is-motion-ready"); };
+    updateParallax();
+    return () => { observer.disconnect(); window.removeEventListener("pointermove", onPointerMove); window.removeEventListener("scroll", onScroll); window.removeEventListener("scroll", updateParallax); root.classList.remove("is-motion-ready"); };
   }, []);
 }
 
@@ -99,13 +112,20 @@ function Hero() {
     <div className="selfer-hero__grid" aria-hidden="true" />
     <div className="selfer-hero__orb selfer-hero__orb--one" aria-hidden="true" />
     <div className="selfer-hero__orb selfer-hero__orb--two" aria-hidden="true" />
-    <div className="selfer-hero__photo"><Image src="/images/waleed-portrait.webp" alt="" fill priority loading="eager" sizes="(max-width: 700px) 100vw, 70vw" /></div>
+    <div className="selfer-hero__photo" data-parallax-speed="-0.06"><Image src="/images/waleed-portrait.webp" alt="" fill priority loading="eager" sizes="(max-width: 700px) 100vw, 70vw" /></div>
     <div className="selfer-container selfer-hero__content">
       <div className="selfer-hero__intro" data-animate>
         <div className="selfer-hero__eyebrow"><span className="selfer-status-dot" /> {identity.availability}<span className="selfer-hero__eyebrow-line" /></div>
         <p className="selfer-hero__index">01 <span>/</span> 04</p>
         <h1 id="hero-title">I am <span>{identity.name}</span></h1>
-        <p className="selfer-speech"><span>Product Designer</span></p>
+        <p className="selfer-speech">
+          <span>
+            <EncryptedText
+              text="Product Designer"
+              revealDelayMs={100}
+            />
+          </span>
+        </p>
         <p className="selfer-hero__descriptor">Designing digital experiences that feel as good as they work.</p>
         <div className="selfer-hero__actions"><a className="selfer-button" href="#portfolio">Explore selected work <span>↗</span></a><a className="selfer-hero__text-link" href="#about">More about me <span>↓</span></a></div>
       </div>
