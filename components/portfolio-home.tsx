@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 import { capabilities, disciplines, identity, projects, services, testimonials, VIDEO_POSTER, VIDEO_SRC } from "@/data/site";
-import { EncryptedText } from "@/components/ui/encrypted-text";
+import { EncryptedText } from "@/components/encrypted-text";
 
 const navItems = [
   { id: "home", label: "Home", icon: "⌂" },
