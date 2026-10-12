@@ -3,6 +3,8 @@ export type Project = {
   title: string;
   description: string;
   image: string;
+  imageWidth?: number;
+  imageHeight?: number;
   year: string;
   discipline: string;
   tone: string;
@@ -34,14 +36,14 @@ export const disciplines = [
 
 export const projects: Project[] = [
   { slug: "inka", title: "INKA", description: "Project case study in progress.", image: "", year: "In progress", discipline: "Selected work", tone: "tone-olive" },
-  { slug: "verdilock", title: "Verdilock", description: "Cybersecurity (Design + Development)", image: "/images/work-verdilock.webp", year: "2025", discipline: "Cybersecurity / Product", tone: "tone-blue", featured: true },
-  { slug: "lonu", title: "LONU", description: "Your budget and dietary goals restaurants finder", image: "/images/work-lonu.webp", year: "2025", discipline: "Mobile / Product", tone: "tone-olive" },
-  { slug: "cybon", title: "CYBON", description: "Penetration tests for website owners, online stores, providers, and anyone who processes sensitive data.", image: "/images/work-cybon.webp", year: "2025", discipline: "Security / Web app", tone: "tone-violet" },
-  { slug: "zippytal", title: "ZippyTAL", description: "Online training and learning platform to enhance and boost your skills", image: "/images/work-zippytal.webp", year: "2024", discipline: "EdTech / Web", tone: "tone-purple", featured: true },
-  { slug: "stack-days", title: "Stack Days", description: "Online training and learning platform to enhance and boost your skills", image: "/images/work-stack-days.webp", year: "2024", discipline: "Learning / Product", tone: "tone-rose", featured: true },
-  { slug: "coche", title: "Coche", description: "Your daily life ride booking app with advanced AI features", image: "/images/work-coche.webp", year: "2024", discipline: "Mobility / Mobile", tone: "tone-cyan" },
-  { slug: "picscroll", title: "PICSCROLL", description: "Discover and connect with endless meme images", image: "/images/work-picscroll.webp", year: "2023", discipline: "Social / Mobile", tone: "tone-sand" },
-  { slug: "boomerang", title: "Boomerang", description: "Let’s date and make connections", image: "/images/work-boomerang.webp", year: "2023", discipline: "Dating / Product", tone: "tone-pink", featured: true },
+  { slug: "verdilock", title: "Verdilock", description: "Cybersecurity (Design + Development)", image: "/images/work-verdilock.webp", imageWidth: 1500, imageHeight: 952, year: "2025", discipline: "Cybersecurity / Product", tone: "tone-blue", featured: true },
+  { slug: "lonu", title: "LONU", description: "Your budget and dietary goals restaurants finder", image: "/images/work-lonu.webp", imageWidth: 882, imageHeight: 952, year: "2025", discipline: "Mobile / Product", tone: "tone-olive" },
+  { slug: "cybon", title: "CYBON", description: "Penetration tests for website owners, online stores, providers, and anyone who processes sensitive data.", image: "/images/work-cybon.webp", imageWidth: 882, imageHeight: 954, year: "2025", discipline: "Security / Web app", tone: "tone-violet" },
+  { slug: "zippytal", title: "ZippyTAL", description: "Online training and learning platform to enhance and boost your skills", image: "/images/work-zippytal.webp", imageWidth: 1500, imageHeight: 952, year: "2024", discipline: "EdTech / Web", tone: "tone-purple", featured: true },
+  { slug: "stack-days", title: "Stack Days", description: "Online training and learning platform to enhance and boost your skills", image: "/images/work-stack-days.webp", imageWidth: 1500, imageHeight: 952, year: "2024", discipline: "Learning / Product", tone: "tone-rose", featured: true },
+  { slug: "coche", title: "Coche", description: "Your daily life ride booking app with advanced AI features", image: "/images/work-coche.webp", imageWidth: 768, imageHeight: 829, year: "2024", discipline: "Mobility / Mobile", tone: "tone-cyan" },
+  { slug: "picscroll", title: "PICSCROLL", description: "Discover and connect with endless meme images", image: "/images/work-picscroll.webp", imageWidth: 882, imageHeight: 952, year: "2023", discipline: "Social / Mobile", tone: "tone-sand" },
+  { slug: "boomerang", title: "Boomerang", description: "Let’s date and make connections", image: "/images/work-boomerang.webp", imageWidth: 1500, imageHeight: 952, year: "2023", discipline: "Dating / Product", tone: "tone-pink", featured: true },
 ];
 
 export const services = [
@@ -59,8 +61,8 @@ export const capabilities = [
 ] as const;
 
 export const testimonials = [
-  { quote: "I recently worked with Waleed for the UI design of my web app, and he did an exceptional job. His attention to detail and intuitive design skills greatly enhanced the user experience and visual appeal of the app.", name: "Meelaad Mashaw", role: "Founder, EASYWAYSEO", initials: "MM" },
-  { quote: "This UX designer is amazing. Waleed is talented, pays attention to details, and designed it exactly how I envisioned it. Working with him is a true testament to bringing a vision to life.", name: "Morgan Shuller", role: "CTO, CocheVia", initials: "MS" },
+  { quote: "I recently worked with Waleed for the UI design of my web app, and he did an exceptional job. His attention to detail and intuitive design skills greatly enhanced the user experience and visual appeal of the app.", name: "Meelaad Mashaw", role: "Founder, EASYWAYSEO", initials: "MM", fullQuote: "I recently worked with Waleed for the UI design of my web app, and he did an exceptional job. His attention to detail and intuitive design skills greatly enhanced the user experience and visual appeal of the app. I highly recommend him for UI design projects due to his professionalism and creativity." },
+  { quote: "This UX designer is amazing. Waleed is talented, pays attention to details, and designed it exactly how I envisioned it. Working with him is a true testament to bringing a vision to life.", name: "Morgan Shuller", role: "CTO, CocheVia", initials: "MS", fullQuote: "This UX DESIGNER IS AMAZING 🤩! He is #1 in design! I am highly impressed and satisfied with the design. Waleed is amazing and talented. He pays attention to details and he designed it EXACTLY how I visioned it to be. Working with him is a true testament of bringing a vision to life !!!" },
 ] as const;
 
 export const pricing = [
@@ -82,3 +84,29 @@ export const faqs = [
 // Keep VIDEO_SRC empty until a real video is supplied; the component will use the poster.
 export const VIDEO_SRC = "";
 export const VIDEO_POSTER = "/images/hero-04.webp";
+
+export const workflow = [
+  { index: "01", title: "Discovery", detail: "Goals, users, constraints, and the product direction." },
+  { index: "02", title: "UX design", detail: "Flows and structure shaped around clear user needs." },
+  { index: "03", title: "UI design", detail: "A polished visual system with purposeful interaction." },
+  { index: "04", title: "Delivery", detail: "Responsive design, organized files, and build-ready details." },
+] as const;
+
+// Original long-form copy retained from the repository's original index.html.
+export const biography = [
+  'Hey there!',
+  'I’m WALEED, a product designer with a knack for turning "meh" into "WOW!" and solving user problems with a sprinkle of creativity, a dash of aesthetics, and just the right amount of why didn’t I think of that?',
+  'When I’m not obsessing over pixels or user flows, you’ll probably find me geeking out over the latest design trends or convincing my clients that yes, good design can make you happier—just like a solid workout (speaking of which, pro tip: squats and sans-serifs both work wonders for your bottom line).',
+  'Let’s make things look awesome, work seamlessly, and maybe even burn a few calories from all the excitement. Ready to create something unforgettable? Let’s Chat.',
+] as const;
+
+export const originalMessaging = {
+  introduction: "It's Waleed (SerVeekay) — Your product design partner!",
+  headline: 'I Design intuitive products that drive results.',
+  hero: 'Your secret weapon for product-market fit: I design high-growth experiences that convert users and impress investors.',
+  overview: 'I help ambitious products move from “meh” to “WOW!” through strategy, sharp visual thinking, and digital experiences people actually enjoy using.',
+  contactTitle: 'Our first chat? Your next breakthrough.',
+  contactCopy: 'Our first discussion could be worth millions to your business.',
+} as const;
+
+export const toolkit = ["Figma", "Next.js", "React", "TypeScript", "CSS", "Design systems", "Prototyping", "Notion"] as const;

@@ -1,115 +1,52 @@
-# Serveekay portfolio customization guide
+# Serveekay portfolio
 
-The portfolio keeps content, presentation, and interaction logic separate so future updates do not require a redesign.
+## Content and routes
 
-## Add or replace the showcase video
+`data/site.ts` is the shared source for identity, navigation, projects, services, capabilities, testimonials, pricing, FAQs, and process. Project links and pages are generated from the `projects` array. Each project has a `/work/[slug]` route. The homepage, `/contact`, all project pages, and the 404 share the root header and footer.
 
-1. Export an MP4 using H.264 video. A 1920×1080 or 1280×720 file is a good fit. Compress it before adding it to the site.
-2. Put the file in `public/media/`, for example:
+To add a project, add its factual content to `projects`. Store its image in `public/images/` and include `imageWidth` and `imageHeight` matching the actual file to reserve the correct space. Projects with no image appear as an editorial status row. INKA intentionally remains in progress; supply actual imagery and facts before expanding its case study.
 
-   ```text
-   public/media/serveekay-reel.mp4
-   ```
+The full original biography and messaging live in `data/site.ts`; `components/about-story.tsx` presents the expandable story. Testimonials retain their short quotes and expandable original full quotes. The old root `index.html`, `feed`, and `wp-login.php` are historical source files, not Next.js routes or a working WordPress installation.
 
-3. Open `data/site.ts` and update the two values at the bottom:
+## Design system
 
-   ```ts
-   export const VIDEO_SRC = "/media/serveekay-reel.mp4";
-   export const VIDEO_POSTER = "/images/hero-04.webp";
-   ```
+`app/globals.css` owns the shared colors, type scale, 1280px container, page gutters, section spacing, curves, and animation easing. The design uses local Haas for body text, local Bricolage for the Serveekay wordmark, and system Georgia for editorial headings. No reference-site fonts or images are loaded.
 
-4. Restart the development server if it is already running.
+`components/ui.tsx` provides section headings, buttons, and arrows. The header has a floating desktop navigation and an accessible mobile menu. Project cards, service disclosures, testimonials, forms, and footer are shared components. The 760px and 1100px breakpoints adapt the page composition; the 360px breakpoint handles narrow phones.
 
-When `VIDEO_SRC` has a value, `components/selfer-site.tsx` adds a responsive “In Motion” section between testimonials and contact. It uses muted inline autoplay, looping, a poster, controls, and fallback text. If it is empty, the section is hidden rather than requesting a missing file.
+## Contact
 
-If you prefer the video not to autoplay, remove `autoPlay` from the `<video>` element. Remove `loop` for one-time playback, or remove `controls` for a clean reel-style presentation. Keep `muted` and `playsInline` when using autoplay for reliable mobile support.
+The homepage inquiry strip forwards the entered email to `/contact?email=...`, where the form prefills it. Both contact forms use `components/contact-form.tsx`. Name, email, subject, message, and optional budget are encoded into a mailto draft addressed to `identity.email`. The visitor must send that draft in their email app. This repository has no server email endpoint, database, or provider credentials. Direct email links are also available.
 
-To use a different poster, add a WebP or JPEG to `public/images/` and change `VIDEO_POSTER` to its public path.
+## Video
 
-## Add or edit projects
+Set `VIDEO_SRC` in `data/site.ts` to an actual video stored in `public/media/`, and update `VIDEO_POSTER` if needed. The video section only renders when a video is configured. It has native controls, no autoplay, and metadata-only preloading.
 
-Project content lives in the `projects` array in `data/site.ts`.
+## Motion and accessibility
 
-1. Add the project cover image to `public/images/`.
-2. Add or update an item:
+The native browser scroll is smooth unless reduced motion is requested. `components/experience.tsx` uses IntersectionObserver and Web Animations for one-time content reveals. Content remains available without JavaScript. CSS handles restrained image scaling, link underlines, and disclosure/menu transitions. Reduced motion disables these effects. No animation dependencies are required.
 
-   ```ts
-   {
-     slug: "project-name",
-     title: "Project Name",
-     description: "A factual one-line project description",
-     image: "/images/work-project-name.webp",
-     year: "2026",
-     discipline: "Product / Web",
-     tone: "tone-blue",
-     featured: true,
-   }
-   ```
+The homepage follows the reference sequence: portrait hero and moving project names, inquiry strip, numbered services, tilted about gallery, horizontal selected work, recent projects, and process resource cards. Original skills, pricing, testimonials, FAQs, and contact content remain available.
 
-All projects appear in the home-page masonry gallery, and every project gets its own matching case-study route at `/work/project-name`. Reorder the array to change the gallery order. Keep each `slug` unique and use lowercase words separated by hyphens.
+`project-marquee.tsx` includes pause/play. `work-carousel.tsx` supports touch scrolling, mouse drag, arrow buttons, keyboard arrows/Home/End, and optional desktop scroll synchronization. Manual navigation takes control from the scroll animation. Reduced motion disables automatic movement. `rolling-text.tsx` supplies accessible character rollover links; `scroll-text.tsx` supplies scroll reveals; `local-time.tsx` displays Pakistan time. `pixel-heading.tsx` renders a decorative low-resolution canvas from the system serif font, retaining a semantic text heading and a no-JavaScript fallback. Header visibility follows scroll direction and restores on keyboard focus.
 
-### Update the INKA case study
+## Metadata
 
-`/work/inka` uses the same Selfer-inspired visual system as the home gallery. It is intentionally marked `In progress` and shows a typographic placeholder instead of another project's image because no INKA-specific asset or narrative exists locally yet. When the final material is ready, add your file to `public/images/` and replace these fields in the `slug: "inka"` item in `data/site.ts`:
+Metadata lives in the root layout and each page. Project titles, descriptions, canonical links, and social images come from the project data. `app/sitemap.ts` generates the route sitemap and `app/robots.ts` exposes robots directives. The canonical domain remains `https://serveekay.com`.
 
-```ts
-description: "A factual one-line INKA description",
-image: "/images/work-inka.webp",
-year: "2026",
-discipline: "Product / Web",
-```
-
-The gallery tile and case page update automatically; no component rewrite is needed. Use only factual details and your own project image.
-
-The legacy `tone` and `featured` fields are retained for compatibility but do not affect the new masonry layout. You can omit them when adding new projects after updating the `Project` type.
-
-## Update personal details, services, and testimonials
-
-Edit `data/site.ts`:
-
-- `identity` controls the name, email, location, role, and availability.
-- `disciplines` controls the four skill labels.
-- `services` controls five service cards. A sixth card links to contact without a made-up service.
-- `capabilities` controls general design-process highlights on case pages.
-- `testimonials` controls client quotes.
-
-Only add factual content you are comfortable publishing.
-
-## Replace images
-
-Store site imagery in `public/images/` and use paths beginning with `/images/`. WebP is recommended for photographs and UI mockups. Preserve roughly the same aspect ratio as the image being replaced to keep the editorial crop intentional.
-
-The shared Figma design could not be read directly in the current workspace (the full file returned an access error), so this build uses your local Serveekay images and content. To add newer Figma artwork, export each image/frame from Figma, put it in `public/images/`, and update the matching `image` value in `data/site.ts`. Only add text or images you own and can verify; avoid copying reference-template content. Project entries with an empty `image` show a typographic placeholder until your final artwork is ready.
-
-The main image assignments are:
-
-- `waleed-portrait.webp` — hero and about portrait
-- `hero-04.webp` — default video poster
-- `work-*.webp` — masonry project-gallery covers and case-page visuals
-- `contact.webp` — optional existing contact artwork (not currently placed in the Selfer-inspired layout)
-
-## Change navigation or contact behavior
-
-Navigation items are in `links` near the top of `components/selfer-site.tsx`. The home and standalone `/contact` forms both open a pre-filled email to `identity.email`; they do not silently submit to a server or require an API key. To enable a real backend, change the form's submit handler and add a server endpoint.
-
-## Change the green, black, or white palette
-
-Open `app/selfer.css` and find the `.selfer` variables. `--s-green` controls the accent, while `--s-bg`, `--s-panel`, and `--s-text` control the dark canvas and contrast. The narrow white navigation is also styled in this file. Home, contact, and every `/work/...` route share these styles.
-
-## Run and verify locally
+## Run and verify
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Open `http://localhost:3000`.
-
-Before publishing:
+Open http://localhost:3000. For production verification:
 
 ```bash
 npm run lint
 npm run build
+npm start
 ```
 
-The site uses the existing Next.js, React, TypeScript, and Tailwind setup. No additional animation or video dependency is required.
+No application environment variables are required. Keep the npm and pnpm lockfiles consistent when changing dependencies.

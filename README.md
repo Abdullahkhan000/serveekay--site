@@ -1,30 +1,31 @@
 # Serveekay Portfolio
 
-A dark editorial product-design portfolio using Waleed's own Serveekay imagery and content. Built with the existing Next.js, React, TypeScript, and Tailwind CSS setup.
+Waleed's product-design portfolio, built with Next.js, React, TypeScript, and Tailwind CSS. A reference-based editorial redesign with local imagery, warm surfaces, serif typography, and native motion: character reveals, tilted imagery, a controllable project marquee, and a draggable project carousel. All original portfolio data and contact destinations are retained.
 
 ## Local development
 
 Requires Node.js 20.9 or newer.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Production
+## Verify and build
 
 ```bash
+npm run lint
 npm run build
 npm start
 ```
 
 ## Structure
 
-- `app/` — App Router pages and global styles
-- `components/` — interactive and shared UI components
+- `app/` — homepage, contact, project routes, metadata, and global design tokens
+- `components/` — shared layout, portfolio sections, and interactive controls
 - `data/` — portfolio content and project metadata
 - `public/` — local WebP imagery and fonts
 
-See [`CUSTOMIZATION.md`](./CUSTOMIZATION.md) for the video, project, image, and content update tutorial.
+Contact inquiries open an email draft; no server email service is configured. See [CUSTOMIZATION.md](./CUSTOMIZATION.md) for content, assets, video, and design-system guidance.

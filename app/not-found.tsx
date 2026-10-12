@@ -1,5 +1,5 @@
-import Link from "next/link";
+import { ButtonLink } from "@/components/ui";
 
 export default function NotFound() {
-  return <div className="selfer" id="top"><main className="selfer-not-found"><div><span>404 / Page not found</span><h1>Wrong turn<span>.</span></h1><p>This page isn&apos;t here, but the work is just around the corner.</p><Link className="selfer-button" href="/">Back to portfolio <span>→</span></Link></div></main></div>;
+  return <section className="container not-found"><p className="eyebrow">/ 404 — Page not found</p><h1>Wrong <em>turn.</em></h1><p>This page isn&apos;t here, but the work is just around the corner.</p><ButtonLink href="/">Back to portfolio</ButtonLink></section>;
 }

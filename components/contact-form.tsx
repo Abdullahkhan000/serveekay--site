@@ -2,51 +2,29 @@
 
 import { FormEvent, useState } from "react";
 import { identity } from "@/data/site";
+import { Arrow } from "@/components/ui";
 
-export function ContactForm() {
+export function ContactForm({ defaultEmail = "" }: { defaultEmail?: string }) {
   const [status, setStatus] = useState("");
-
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
-    const name = String(form.get("name") || "");
-    const email = String(form.get("email") || "");
-    const project = String(form.get("project") || "");
+    const name = String(form.get("name") || "").trim();
+    const email = String(form.get("email") || "").trim();
+    const subject = String(form.get("subject") || "Project inquiry").trim();
+    const message = String(form.get("message") || "").trim();
     const budget = String(form.get("budget") || "Not specified");
-    const subject = encodeURIComponent(`Project inquiry from ${name}`);
-    const body = encodeURIComponent(`Hi Waleed,\n\n${project}\n\nBudget: ${budget}\nContact: ${email}`);
-    setStatus("Opening your email app…");
-    window.location.href = `mailto:${identity.email}?subject=${subject}&body=${body}`;
+    const mailSubject = encodeURIComponent(`${subject} — ${name}`);
+    const mailBody = encodeURIComponent(`${message}\n\nBudget: ${budget}\nFrom: ${name} (${email})`);
+    setStatus("Your email app will open with your draft. Send it there to complete your inquiry.");
+    window.location.href = `mailto:${identity.email}?subject=${mailSubject}&body=${mailBody}`;
   }
-
-  return (
-    <form onSubmit={submit} className="inquiry-form">
-      <label>
-        <span>01 / Your name</span>
-        <input required name="name" autoComplete="name" placeholder="Your name" />
-      </label>
-      <label>
-        <span>02 / Email address</span>
-        <input required type="email" name="email" autoComplete="email" placeholder="hello@company.com" />
-      </label>
-      <label>
-        <span>03 / Tell me about the project</span>
-        <textarea required name="project" rows={3} placeholder="A few lines about your idea, goals, and timeline…" />
-      </label>
-      <label>
-        <span>04 / Approximate budget</span>
-        <select name="budget" defaultValue="">
-          <option value="" disabled>Select a range</option>
-          <option>$1k — $3k</option>
-          <option>$3k — $8k</option>
-          <option>$8k — $15k</option>
-          <option>$15k+</option>
-        </select>
-      </label>
-      <div className="inquiry-form__submit">
-        <button type="submit"><span>Send inquiry</span><i>↗</i></button>
-        <span aria-live="polite">{status}</span>
-      </div>
-    </form>
-  );
+  return <form className="inquiry-form" onSubmit={submit}>
+    <div className="form-row"><label>Name *<input name="name" placeholder="Your name" autoComplete="name" required maxLength={120} /></label><label>Email *<input name="email" type="email" defaultValue={defaultEmail} placeholder="you@company.com" autoComplete="email" required /></label></div>
+    <label>Subject *<input name="subject" placeholder="What are you working on?" required maxLength={200} /></label>
+    <label>Message *<textarea name="message" placeholder="Tell me a little about your project…" rows={4} required maxLength={4000} /></label>
+    <label>Approximate budget <span className="optional">(optional)</span><select name="budget" defaultValue=""><option value="">Select a range</option><option>$1k — $3k</option><option>$3k — $8k</option><option>$8k — $15k</option><option>$15k+</option></select></label>
+    <div className="form-submit"><button className="button" type="submit">Send a message <Arrow /></button><p>Opens your email app.<br />Prefer email? <a href={`mailto:${identity.email}`}>Write to me directly.</a></p></div>
+    <p className="form-status" role="status">{status}</p>
+  </form>;
 }

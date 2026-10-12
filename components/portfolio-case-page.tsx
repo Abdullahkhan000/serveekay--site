@@ -1,117 +1,33 @@
-"use client";
-
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { identity, type Project } from "@/data/site";
+import { type Project } from "@/data/site";
+import { Arrow, ButtonLink, SectionHeading } from "@/components/ui";
+import { ProjectCard } from "@/components/project-showcase";
 
-const process = [
-  ["01", "Discovery", "Goals, context, and the information needed to set a clear direction."],
-  ["02", "UX direction", "A focused structure that keeps the product experience clear and useful."],
-  ["03", "Interface design", "A visual system that gives the experience a recognisable, considered feel."],
-  ["04", "Delivery", "Polished, responsive details prepared for the next stage of the project."],
-] as const;
+const directions: Record<string, { headline: string; context: string; focus: string }> = {
+  verdilock: { headline: "Security, with clarity.", context: "A cybersecurity product where trust and clarity take center stage. Verdilock brings design and development together in one digital experience.", focus: "Making technical information approachable through a clear visual hierarchy and a considered product interface." },
+  lonu: { headline: "Good food. A better fit.", context: "LONU connects restaurant discovery with personal budgets and dietary goals, bringing a more personal perspective to choosing where to eat.", focus: "Keeping preferences and discovery close together, with a mobile experience built around everyday decisions." },
+  cybon: { headline: "Complex security. Clear decisions.", context: "A penetration testing platform for website owners, online stores, and businesses handling sensitive data.", focus: "Presenting a technical service in a way that feels organized, accessible, and easy to navigate." },
+  zippytal: { headline: "Room to learn. Space to grow.", context: "An online learning platform focused on building skills and making the next step in personal development easier to discover.", focus: "Creating a clear relationship between learning content, navigation, and the paths available to learners." },
+  "stack-days": { headline: "A new perspective on learning.", context: "Stack Days explores the digital learning experience, bringing training and skill development into a focused product interface.", focus: "Giving learning content a consistent visual language and a natural place in the product experience." },
+  coche: { headline: "Everyday journeys, reimagined.", context: "A ride booking app that brings everyday mobility and AI features into the same mobile product experience.", focus: "Keeping the core booking journey legible while giving advanced features a considered place in the interface." },
+  picscroll: { headline: "Discover. Connect. Keep scrolling.", context: "A social discovery experience built around meme images and the connections that happen through shared interests.", focus: "Putting visual content first and keeping the surrounding mobile interface light and easy to explore." },
+  boomerang: { headline: "A little spark. A real connection.", context: "A dating product centered on meeting people and making connections through a distinctive digital experience.", focus: "Balancing personality and simplicity in an interface built around human connection." },
+};
 
 export function PortfolioCasePage({ project, next, related }: { project: Project; next: Project; related: Project[] }) {
-  const [dark, setDark] = useState(false);
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => setReady(true), window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 50 : 600);
-    const elements = [...document.querySelectorAll<HTMLElement>("[data-case-reveal]")];
-    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
-    }), { threshold: .08, rootMargin: "0px 0px -8% 0px" });
-    elements.forEach((element) => observer.observe(element));
-    return () => { window.clearTimeout(timer); observer.disconnect(); };
-  }, []);
-
-  return (
-    <div className={`portfolio-home portfolio-case ${dark ? "is-dark" : ""}`}>
-      <div className={`portfolio-loader ${ready ? "is-hidden" : ""}`} aria-hidden="true"><span>S</span><i /></div>
-      <div className="portfolio-shell">
-        <aside className="profile-card case-profile" aria-label="Project profile">
-          <Link className="profile-card__brand" href="/" aria-label="Return to Serveekay home">
-            <span className="profile-card__mark" aria-hidden="true">S</span>
-            <p><strong>{identity.name}</strong><strong>{identity.studio}</strong></p>
-          </Link>
-          <figure className="profile-card__portrait">
-            <Image src="/images/waleed-portrait.webp" alt="Waleed, product designer behind Serveekay" fill priority sizes="(max-width: 1023px) calc(100vw - 60px), 300px" />
-          </figure>
-          <dl className="profile-card__facts">
-            <div><dt>Selected project:</dt><dd>{project.title}</dd></div>
-            <div><dt>Project status:</dt><dd>{project.year === "In progress" ? "Case study in progress" : `${project.year} · ${project.discipline}`}</dd></div>
-          </dl>
-          <nav className="profile-card__quick" aria-label="Project shortcuts">
-            <Link href="/" aria-label="Back to home">⌂</Link>
-            <Link href="/#portfolio" aria-label="View all projects">⌘</Link>
-            <a href={`mailto:${identity.email}`} aria-label="Send email">@</a>
-            <Link href="/#process" aria-label="View process">▤</Link>
-            <Link href="/#contact" aria-label="Contact Serveekay">↗</Link>
-          </nav>
-          <Link className="profile-card__cta" href="/#contact">Let&apos;s Work Together!</Link>
-        </aside>
-
-        <main className="portfolio-main" id="top">
-          <header className="portfolio-header case-header">
-            <nav aria-label="Project navigation">
-              <Link href="/">Home</Link><Link href="/#portfolio">Portfolio</Link><Link href="/#about">About</Link><Link href="/#process">Process</Link><Link href="/#contact">Contact</Link>
-            </nav>
-            <button className="theme-switch" type="button" onClick={() => setDark((value) => !value)} aria-label={`Use ${dark ? "light" : "dark"} theme`}>{dark ? "☀" : "☾"}</button>
-            <Link className="header-talk" href="/#contact">Let&apos;s Talk <span>▢</span></Link>
-          </header>
-
-          <section className="case-solid-hero">
-            <div data-case-reveal>
-              <span className="portfolio-kicker">✦&nbsp; Selected work / case study</span>
-              <p className="case-solid-hero__meta">{project.discipline} <i>•</i> {project.year}</p>
-              <h1>{project.title}<em>.</em></h1>
-              <p className="case-solid-hero__description">{project.description}</p>
-              <div className="portfolio-actions"><Link href="#project-overview">Project overview <span>↓</span></Link><Link href="/#contact">Start a project <span>↗</span></Link></div>
-            </div>
-            <figure className="case-solid-hero__visual" data-case-reveal>
-              <Image src={project.image} alt={`${project.title} project presentation`} fill priority sizes="(max-width: 1023px) calc(100vw - 32px), 900px" />
-              <figcaption>{project.title} <span>↗</span></figcaption>
-            </figure>
-          </section>
-
-          <section className="case-solid-section" id="project-overview">
-            <header className="portfolio-heading" data-case-reveal><span>✦&nbsp; Overview</span><h2>A focused project, presented with clarity.</h2></header>
-            <div className="case-info-grid" data-case-reveal>
-              <article><span>Project</span><strong>{project.title}</strong></article>
-              <article><span>Focus</span><strong>{project.discipline}</strong></article>
-              <article><span>Timing</span><strong>{project.year}</strong></article>
-            </div>
-            <p className="case-overview-copy" data-case-reveal>{project.year === "In progress" ? "The INKA case study is being prepared. This page keeps its presentation ready for the project story, imagery, and outcomes as they become available." : "A compact case-study format that brings the project context, visual direction, and delivery process into one clear narrative."}</p>
-          </section>
-
-          <section className="case-solid-section case-process-solid">
-            <header className="portfolio-heading" data-case-reveal><span>✦&nbsp; Approach</span><h2>A deliberate path from direction to delivery.</h2></header>
-            <div className="case-step-list">
-              {process.map(([number, title, detail]) => <article key={number} data-case-reveal><span>{number}</span><div><h3>{title}</h3><p>{detail}</p></div><i>↗</i></article>)}
-            </div>
-          </section>
-
-          <section className="case-solid-section case-related">
-            <header className="portfolio-heading" data-case-reveal><span>✦&nbsp; More work</span><h2>Keep exploring selected projects.</h2></header>
-            <div className="featured-grid case-related__grid">
-              {related.map((item) => <figure className="featured-card" key={item.slug} data-case-reveal><Link href={`/work/${item.slug}`} aria-label={`View ${item.title} case study`}><Image src={item.image} alt={`${item.title} project`} fill sizes="(max-width: 700px) calc(100vw - 32px), 410px" /></Link><figcaption><span>{item.title}</span><span>{item.discipline}</span></figcaption></figure>)}
-            </div>
-            <Link className="case-next-link" href={`/work/${next.slug}`} data-case-reveal>Next case: <strong>{next.title}</strong> <span>↗</span></Link>
-          </section>
-
-          <section className="case-solid-cta" data-case-reveal>
-            <span>Have a project in mind?</span><h2>Let&apos;s make<br />something memorable.</h2><Link href="/#contact">Start a conversation <span>↗</span></Link>
-          </section>
-        </main>
-      </div>
-      <nav className="mobile-dock case-mobile-dock" aria-label="Mobile project navigation">
-        <Link href="/" aria-label="Home">⌂</Link><Link href="/#portfolio" aria-label="Portfolio">⌘</Link><Link href="#project-overview" aria-label="Project overview">▤</Link><a href={`mailto:${identity.email}`} aria-label="Email">✉</a>
-        <button type="button" onClick={() => setDark((value) => !value)} aria-label={`Use ${dark ? "light" : "dark"} theme`}>{dark ? "☀" : "☾"}</button><Link className="mobile-dock__talk" href="/#contact" aria-label="Let's talk">▢</Link>
-      </nav>
-    </div>
-  );
+  const inProgress = project.year === "In progress";
+  const direction = directions[project.slug];
+  return <div className={`case-page ${project.tone}`}>
+    <section className="case-cover" data-nav-theme="light"><div className="container case-hero">
+      <div className="case-breadcrumb"><Link href="/#work" className="text-link">← All projects</Link><span>Serveekay / {project.title}</span></div>
+      <div className="case-title-row"><div><p className="eyebrow">/ {project.discipline}</p><h1>{project.title}<em>.</em></h1></div><span className="case-seal" aria-hidden="true">Design with<br />intention.<Arrow /></span></div>
+      <div className="case-intro"><p>{direction?.headline || "Something good is taking shape."}</p><a href={inProgress ? "#case-story" : "#project-presentation"} className="case-explore">Explore the project <span aria-hidden="true">↓</span></a></div>
+      <dl className="case-facts"><div><dt>Project</dt><dd>{project.title}</dd></div><div><dt>Discipline</dt><dd>{project.discipline}</dd></div><div><dt>{inProgress ? "Status" : "Year"}</dt><dd>{project.year}</dd></div><div><dt>Studio</dt><dd>Serveekay</dd></div></dl>
+    </div></section>
+    {project.image ? <section className="case-presentation" id="project-presentation"><figure className="container case-image"><div className="case-image-frame"><div className="case-frame-bar"><span className="case-frame-dots" aria-hidden="true"><i /><i /><i /></span><span>{project.title} / Design showcase</span><span aria-hidden="true">↗</span></div><Image src={project.image} alt={`${project.title} — ${project.description}`} width={project.imageWidth} height={project.imageHeight} preload sizes="(max-width: 760px) 92vw, 90vw" /></div><figcaption><span>01 / Product presentation</span><span>{project.discipline}</span></figcaption></figure></section> : <section className="container case-coming"><p className="eyebrow"><span className="status-dot" /> In the making</p><h2>A new story.<br /><em>Coming soon.</em></h2><p>{project.description}</p><ButtonLink href="/contact">Discuss a similar project</ButtonLink></section>}
+    <section className="section container case-overview" id="case-story"><div><p className="eyebrow">/ Behind the project</p><h2>{inProgress ? "A work in" : "The bigger"}<br /><em>{inProgress ? "progress." : "picture."}</em></h2></div><div><p className="case-overview-lead">{direction?.context || "The full project presentation is currently being prepared. Check back for a closer look at the work."}</p>{direction && <div className="case-design-note"><span className="eyebrow">Design focus</span><p>{direction.focus}</p></div>}<div className="case-tags">{project.discipline.split(" / ").map(tag => <span key={tag}>{tag}</span>)}<span>{project.year}</span></div></div></section>
+    <section className="case-collaborate" data-nav-theme="dark"><div className="container"><p className="eyebrow">/ Your idea could be next</p><div><h2>Great things start<br />with a <em>conversation.</em></h2><ButtonLink href="/contact" light>Let&apos;s talk about your project</ButtonLink></div></div></section>
+    <section className="section container case-related"><div className="heading-row"><SectionHeading label="Keep exploring">Another perspective.<br /><em>More selected work.</em></SectionHeading><Link href="/#work" className="text-link">View all work <Arrow /></Link></div><div className="project-grid">{related.map(item => <ProjectCard key={item.slug} project={item} />)}</div><Link className="next-project case-next" href={`/work/${next.slug}`}><div><span className="eyebrow">/ Up next</span><h2>{next.title}<em>.</em></h2><p>{next.discipline}</p></div><span className="case-next-arrow"><Arrow /></span></Link></section>
+  </div>;
 }

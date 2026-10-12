@@ -1,44 +1,23 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
-import "./selfer.css";
-import "lenis/dist/lenis.css";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { Experience } from "@/components/experience";
 
-import SmoothScroll from "@/components/smooth-scroll";
-import CursorTrail from "@/components/CursorTrail";
+const haas = localFont({ src: [{ path: "../public/fonts/haas-roman.ttf", weight: "400", style: "normal" }, { path: "../public/fonts/haas-medium.ttf", weight: "600", style: "normal" }], variable: "--font-haas", display: "swap" });
+const brand = localFont({ src: "../public/fonts/bricolage-bold.woff2", variable: "--font-brand", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://serveekay.com"),
-  title: {
-    default: "Serveekay — Product Designer",
-    template: "%s — Serveekay",
-  },
-  description:
-    "Waleed is a product designer crafting clear, useful digital experiences at Serveekay.",
-  keywords: [
-    "product designer",
-    "UI UX designer",
-    "web design",
-    "mobile app design",
-    "Serveekay",
-    "Waleed",
-  ],
-  openGraph: {
-    title: "Serveekay — Product Designer",
-    description: "Intuitive digital products designed to drive results.",
-    type: "website",
-  },
+  title: { default: "Serveekay — Product Designer", template: "%s — Serveekay" },
+  description: "Waleed is a product designer crafting clear, useful digital experiences at Serveekay.",
+  keywords: ["product designer", "UI UX designer", "web design", "mobile app design", "Serveekay", "Waleed"],
+  icons: { icon: "/favicon.png" },
+  openGraph: { title: "Serveekay — Product Designer", description: "Intuitive digital products designed to drive results.", type: "website", siteName: "Serveekay", images: [{ url: "/images/hero-04.webp", alt: "Serveekay digital product design" }] },
+  twitter: { card: "summary_large_image", title: "Serveekay — Product Designer", description: "Waleed is a product designer crafting clear, useful digital experiences.", images: ["/images/hero-04.webp"] },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
-        <SmoothScroll />
-        <CursorTrail />
-        {children}
-      </body>
-    </html>
-  );
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="en" data-scroll-behavior="smooth" className={`${haas.variable} ${brand.variable}`}><body id="top"><a className="skip-link" href="#main">Skip to content</a><Header /><main id="main" tabIndex={-1}>{children}</main><Footer /><Experience /></body></html>;
 }

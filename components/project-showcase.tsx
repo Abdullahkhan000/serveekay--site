@@ -1,49 +1,16 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
-import { projects } from "@/data/site";
-import { Marquee } from "@/components/ui";
+import { type Project } from "@/data/site";
+import { Arrow } from "@/components/ui";
 
-export function ProjectShowcase() {
-  const featuredProjects = projects.slice(0, 3);
-
-  return (
-    <section id="work" className="project-showcase">
-      <Marquee>Selected work</Marquee>
-      <div className="project-stack section-pad">
-        {featuredProjects.map((project, index) => (
-          <article className="project-stack__item" key={project.slug}>
-            <Link
-              href={`/work/${project.slug}`}
-              className={`project-card ${project.tone}`}
-              data-cursor="View"
-              aria-label={`View ${project.title} case study`}
-            >
-              <Image
-                src={project.image}
-                alt={`${project.title} project presentation`}
-                fill
-                sizes="(max-width: 767px) 94vw, 90vw"
-                priority={index === 0}
-              />
-              <span className="project-card__shade" aria-hidden="true" />
-              <span className="project-card__title">{project.title}<i>_</i></span>
-              <span className="project-card__discipline">
-                <small>Discipline</small>{project.discipline}
-              </span>
-              <span className="project-card__description">
-                <small>Project</small>{project.description}
-              </span>
-              <span className="project-card__year">
-                <small>Year</small>{project.year}
-              </span>
-              <span className="project-card__index">0{index + 1}</span>
-            </Link>
-          </article>
-        ))}
-      </div>
-      <div className="project-showcase__cta">
-        <Link href="/contact">+ Your project</Link>
-      </div>
-    </section>
-  );
+export function ProjectCard({ project, wide = false, index }: { project: Project; wide?: boolean; index?: number }) {
+  return <Link href={`/work/${project.slug}`} className={`project-card ${project.tone}${wide ? " project-card--wide" : ""}`}>
+    <div className="project-card__image">
+      <div className="project-card__label"><span>{wide ? "Featured project" : project.discipline.split(" / ")[0]}</span><span>{project.year}</span></div>
+      <Image src={project.image} alt={`${project.title} — ${project.description}`} fill sizes={wide ? "(max-width: 760px) 92vw, 90vw" : "(max-width: 760px) 92vw, 44vw"} />
+      <span className="project-card__view">Explore project <Arrow /></span>
+    </div>
+    <div className="project-card__caption"><div className="project-card__title">{index && <span className="project-card__index">{String(index).padStart(2, "0")}</span>}<div><h3>{project.title}</h3><p>{project.discipline}</p></div></div><span className="project-card__open"><Arrow /></span></div>
+    <p className="project-card__description">{project.description}</p>
+  </Link>;
 }

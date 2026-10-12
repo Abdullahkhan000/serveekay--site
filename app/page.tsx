@@ -1,5 +1,8 @@
-import { SelferHome } from "@/components/selfer-site";
+import type { Metadata } from "next";
+import { PortfolioHome } from "@/components/portfolio-home";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function Home() {
-  return <SelferHome />;
+  return <PortfolioHome />;
 }
