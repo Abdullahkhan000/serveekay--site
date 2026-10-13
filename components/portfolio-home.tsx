@@ -1,4 +1,6 @@
 import Image from "next/image";
+import heroPortrait from "@/public/images/waleed-portrait.webp";
+import aboutPortrait from "@/public/images/waleed-portrait.jpg";
 import Link from "next/link";
 import { capabilities, disciplines, faqs, identity, originalMessaging, pricing, projects, services, toolkit, workflow } from "@/data/site";
 import { Arrow, ButtonLink, SectionHeading } from "@/components/ui";
@@ -12,10 +14,11 @@ import { AboutStory } from "@/components/about-story";
 import { ScrollText } from "@/components/scroll-text";
 import { WorkCarousel } from "@/components/work-carousel";
 import { RollingText } from "@/components/rolling-text";
+import { ProductizedOffers } from "@/components/productized-offers";
 
 function Hero() {
   return <section className="hero" id="home" data-nav-theme="dark" aria-labelledby="hero-title">
-    <div className="hero-portrait"><Image src="/images/waleed-portrait.webp" alt="Waleed, the product designer behind Serveekay" fill preload sizes="(max-width: 760px) 100vw, 60vw" /></div>
+    <div className="hero-portrait"><Image src={heroPortrait} alt="Waleed, the product designer behind Serveekay" fill preload sizes="(max-width: 760px) 100vw, 60vw" /></div>
     <div className="container hero-content"><div className="hero-copy" data-reveal>
       <h1 id="hero-title">I am <span className="hand-underline">{identity.name}.</span></h1>
       <p className="hero-role">Your product design partner.</p>
@@ -36,15 +39,15 @@ function InquiryStrip() {
 
 function About() {
   const images = [
-    { src: "/images/waleed-portrait.webp", alt: "Waleed, product designer" },
-    { src: "/images/hero-01.webp", alt: "Serveekay product interface design" },
-    { src: "/images/hero-02.webp", alt: "Serveekay mobile product design" },
-    { src: "/images/hero-03.webp", alt: "Serveekay web interface design" },
+    { src: aboutPortrait, alt: "Waleed, product designer" },
+    { src: "/images/hero-01.jpg", alt: "Serveekay product interface design" },
+    { src: "/images/hero-02.jpg", alt: "Serveekay mobile product design" },
+    { src: "/images/hero-03.jpg", alt: "Serveekay web interface design" },
   ];
   return <section className="section warm-panel about-section" id="about" data-nav-theme="light"><span className="anchor-alias" id="aboutme" /><div className="container">
     <p className="eyebrow">/ About me</p><PixelHeading lines={['Turning “meh”', 'into “WOW!”']} />
     <p className="about-introduction">{originalMessaging.overview}</p>
-    <div className="about-gallery" tabIndex={0} role="region" aria-label="Waleed and selected design work">{images.map(image => <figure key={image.src} data-gallery-card><Image src={image.src} alt={image.alt} fill sizes="(max-width: 760px) 500px, 1000px" /></figure>)}</div>
+    <div className="about-gallery" tabIndex={0} role="region" aria-label="Waleed and selected design work">{images.map(image => <figure key={typeof image.src === "string" ? image.src : image.src.src} data-gallery-card><Image src={image.src} alt={image.alt} fill loading={image.src === "/images/hero-01.jpg" ? "eager" : "lazy"} sizes="(max-width: 760px) 500px, 1000px" /></figure>)}</div>
     <div className="about-editorial"><div className="about-highlight"><h3>Hey there! I&apos;m {identity.name}.</h3><ScrollText text="A product designer with a knack for turning “meh” into “WOW!” and solving user problems with creativity, thoughtful aesthetics, and clear product thinking." /><ScrollText text="When I’m not obsessing over pixels or user flows, I’m exploring design trends and finding better ways to make digital products feel intuitive." /><dl className="about-facts"><div><dt>Based in</dt><dd>{identity.location}</dd></div><div><dt>Focus</dt><dd>{identity.role}</dd></div></dl><ButtonLink href="/contact">More about your project?</ButtonLink></div><AboutStory /></div>
   </div></section>;
 }
@@ -80,6 +83,7 @@ function Pricing() {
   return <section className="section warm-panel" id="pricing" data-nav-theme="light"><div className="container">
     <div className="heading-row"><SectionHeading label="Ways to work">Your project.<br /><em>Our partnership.</em></SectionHeading><p>A focused solution shaped around your project.</p></div>
     <div className="pricing-grid">{pricing.map((plan, index) => <article className={`price-plan${index === 0 ? " price-plan--dark" : ""}`} key={plan.label} data-reveal><div className="price-plan__top"><h3>{plan.label}</h3><span>{plan.note}</span></div><p className="price-value">{plan.price}{index === 0 && <small> / month</small>}</p><p>{plan.subtitle}</p><ul>{plan.features.map(feature => <li key={feature}>{feature}</li>)}</ul><ButtonLink href="/contact" light={index === 0}>Start a project</ButtonLink></article>)}</div>
+    <ProductizedOffers />
   </div></section>;
 }
 
