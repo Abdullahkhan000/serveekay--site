@@ -20,10 +20,12 @@ function Hero() {
   return <section className="hero" id="home" data-nav-theme="dark" aria-labelledby="hero-title">
     <div className="hero-portrait"><Image src={heroPortrait} alt="Waleed, the product designer behind Serveekay" fill preload sizes="(max-width: 760px) 100vw, 60vw" /></div>
     <div className="container hero-content"><div className="hero-copy" data-reveal>
-      <h1 id="hero-title">I am <span className="hand-underline">{identity.name}.</span></h1>
+      <p className="hero-kicker"><span /> Independent product designer</p>
+      <h1 id="hero-title"><span className="hero-intro">I am</span> <span className="hero-name">{identity.name}.</span></h1>
       <p className="hero-role">Your product design partner.</p>
       <p className="hero-description">Designing digital experiences that feel as good as they work.</p>
-      <p className="hero-description">{originalMessaging.hero}</p>
+      <p className="hero-description hero-supporting">{originalMessaging.hero}</p>
+      <div className="hero-actions"><Link className="hero-primary" href="/contact">Discuss your project<span aria-hidden="true">↗</span></Link><a className="hero-secondary" href="#work">View selected work<span aria-hidden="true">↓</span></a></div>
     </div></div>
     <ProjectMarquee />
   </section>;
@@ -53,9 +55,9 @@ function About() {
 }
 
 function Work() {
-  return <section className="section work-section" id="work" data-nav-theme="dark"><span className="anchor-alias" id="portfolio" /><span className="anchor-alias" id="projects" /><div className="container">
+  return <section className="section work-section" id="work" data-nav-theme="light"><span className="anchor-alias" id="portfolio" /><span className="anchor-alias" id="projects" /><div className="container">
     <div className="portfolio-masthead"><span className="eyebrow">/ The portfolio</span><span>Independent designer · Selected work</span></div>
-    <div className="portfolio-heading"><SectionHeading label="Ideas made tangible">Selected work.<br /><em>Lasting impressions.</em></SectionHeading><div><p className="work-intro">Digital products with a point of view. A curated collection of interfaces, experiences, and ideas brought to life.</p><ButtonLink href="/contact" light>Let&apos;s build something great</ButtonLink></div></div>
+    <div className="portfolio-heading"><SectionHeading label="Ideas made tangible">Selected work.<br /><em>Lasting impressions.</em></SectionHeading><div><p className="work-intro">Digital products with a point of view. A curated collection of interfaces, experiences, and ideas brought to life.</p><Link className="work-contact-link" href="/contact">Let&apos;s build something great<span aria-hidden="true">↗</span></Link></div></div>
     <WorkCarousel projects={projects} />
     {projects.filter(project => !project.image).map(project => <Link className="project-in-progress" href={`/work/${project.slug}`} key={project.slug}><span className="eyebrow">/ {project.discipline}</span><h3>{project.title}</h3><span>{project.description}</span><Arrow /></Link>)}
   </div></section>;
@@ -88,12 +90,12 @@ function Pricing() {
 }
 
 export function PortfolioHome() {
-  return <>
+  return <div className="portfolio-home">
     <Hero /><InquiryStrip />
     <section className="section container split-section" id="services" data-nav-theme="light"><SectionHeading label="My services">Have an idea?<br />Let&apos;s find the<br /><em>right direction.</em></SectionHeading><ServiceList /></section>
     <About /><Work /><RecentWork /><Process /><Skills /><MediaShowcase /><Pricing />
     <section className="section container split-section" id="testimonials" data-nav-theme="light"><SectionHeading label="Kind words">A little love<br />from <em>clients.</em></SectionHeading><Testimonials /></section>
     <section className="section container split-section faq-section" id="faqs" data-nav-theme="light"><SectionHeading label="Need to know">FAQ&apos;s &amp;<br /><em>shenanigans.</em></SectionHeading><div className="faq-list">{faqs.map(([question, answer], index) => <details name="faqs" key={question} data-reveal><summary><span className="faq-number">0{index + 1}</span><h3>{question}</h3><span className="disclosure-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></section>
     <section className="section contact-section" id="contact" data-nav-theme="light"><div className="container contact-grid"><div><SectionHeading label="Get in touch">Let&apos;s<br /><em>connect.</em></SectionHeading><p>Have a product, a fresh idea, or a question? I&apos;d love to hear about it.</p><a className="contact-email" href={`mailto:${identity.email}`}>{identity.email} ↗</a><div className="contact-original"><h3>{originalMessaging.contactTitle}</h3><p>{originalMessaging.contactCopy}</p></div></div><ContactForm /></div></section>
-  </>;
+  </div>;
 }
