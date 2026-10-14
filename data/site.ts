@@ -28,11 +28,20 @@ export const navigation = [
 ] as const;
 
 export const disciplines = [
-  "UI/UX product design",
-  "Web design",
+  "Consulting",
+  "Design System",
+  "Web Design + Dev",
+  "Mobile App Design + Dev",
   "Branding",
-  "Development",
 ] as const;
+
+export const serviceMessaging = {
+  label: "My services",
+  prompt: "Have an idea?",
+  direction: "Let's find the right direction.",
+  headline: "Have an idea? Let's find the right direction.",
+  description: "Consulting, Design System, Web Design + Dev, Mobile App Design + Dev, and Branding.",
+} as const;
 
 export const projects: Project[] = [
   { slug: "inka", title: "INKA", description: "Project case study in progress.", image: "", year: "In progress", discipline: "Selected work", tone: "tone-olive" },
@@ -103,10 +112,10 @@ export const biography = [
 export const originalMessaging = {
   introduction: "It's Waleed (SerVeekay) — Your product design partner!",
   headline: 'I Design intuitive products that drive results.',
-  hero: 'Your secret weapon for product-market fit: I design high-growth experiences that convert users and impress investors.',
-  overview: 'I help ambitious products move from “meh” to “WOW!” through strategy, sharp visual thinking, and digital experiences people actually enjoy using.',
-  contactTitle: 'Our first chat? Your next breakthrough.',
-  contactCopy: 'Our first discussion could be worth millions to your business.',
+  hero: serviceMessaging.description,
+  overview: "Expert UI/UX consulting to identify design gaps, improve user experience, and align with your business goals.",
+  contactTitle: serviceMessaging.prompt,
+  contactCopy: serviceMessaging.direction,
 } as const;
 
 export const toolkit = ["Figma", "Next.js", "React", "TypeScript", "CSS", "Design systems", "Prototyping", "Notion"] as const;

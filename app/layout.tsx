@@ -4,6 +4,7 @@ import "./globals.css";
 import "./premium.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { serviceMessaging } from "@/data/site";
 import { Experience } from "@/components/experience";
 
 const haas = localFont({ src: [{ path: "../public/fonts/haas-roman.ttf", weight: "400", style: "normal" }, { path: "../public/fonts/haas-medium.ttf", weight: "600", style: "normal" }], variable: "--font-haas", display: "swap" });
@@ -12,11 +13,11 @@ const brand = localFont({ src: "../public/fonts/bricolage-bold.woff2", variable:
 export const metadata: Metadata = {
   metadataBase: new URL("https://serveekay.com"),
   title: { default: "Serveekay — Product Designer", template: "%s — Serveekay" },
-  description: "Waleed is a product designer crafting clear, useful digital experiences at Serveekay.",
+  description: serviceMessaging.description,
   keywords: ["product designer", "UI UX designer", "web design", "mobile app design", "Serveekay", "Waleed"],
   icons: { icon: "/favicon.png" },
-  openGraph: { title: "Serveekay — Product Designer", description: "Intuitive digital products designed to drive results.", type: "website", siteName: "Serveekay", images: [{ url: "/images/hero-04.webp", alt: "Serveekay digital product design" }] },
-  twitter: { card: "summary_large_image", title: "Serveekay — Product Designer", description: "Waleed is a product designer crafting clear, useful digital experiences.", images: ["/images/hero-04.webp"] },
+  openGraph: { title: "Serveekay — Product Designer", description: serviceMessaging.description, type: "website", siteName: "Serveekay", images: [{ url: "/images/hero-04.webp", alt: "Serveekay digital product design" }] },
+  twitter: { card: "summary_large_image", title: "Serveekay — Product Designer", description: serviceMessaging.description, images: ["/images/hero-04.webp"] },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

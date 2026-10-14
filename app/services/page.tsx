@@ -1,1 +1,2 @@
-import {ServicesPage} from "@/components/business-site";export const metadata={title:"Design services",description:"Website redesign, MVP design and ongoing product design for startups and SaaS.",alternates:{canonical:"/services"}};export default ServicesPage;
+import {serviceMessaging} from "@/data/site";
+import {ServicesPage} from "@/components/business-site";export const metadata={title:"Design services",description:serviceMessaging.description,alternates:{canonical:"/services"}};export default ServicesPage;

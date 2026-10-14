@@ -2,7 +2,7 @@ import Image from "next/image";
 import heroPortrait from "@/public/images/waleed-portrait.webp";
 import aboutPortrait from "@/public/images/waleed-portrait.jpg";
 import Link from "next/link";
-import { capabilities, disciplines, faqs, identity, originalMessaging, pricing, projects, services, toolkit, workflow } from "@/data/site";
+import { capabilities, disciplines, faqs, identity, originalMessaging, pricing, projects, services, serviceMessaging, toolkit, workflow } from "@/data/site";
 import { Arrow, ButtonLink, SectionHeading } from "@/components/ui";
 import { ServiceList } from "@/components/service-list";
 import { Testimonials } from "@/components/testimonials";
@@ -23,7 +23,7 @@ function Hero() {
       <p className="hero-kicker"><span /> Independent product designer</p>
       <h1 id="hero-title"><span className="hero-intro">I am</span> <span className="hero-name">{identity.name}.</span></h1>
       <p className="hero-role">Your product design partner.</p>
-      <p className="hero-description">Designing digital experiences that feel as good as they work.</p>
+      <p className="hero-description">{serviceMessaging.headline}</p>
       <p className="hero-description hero-supporting">{originalMessaging.hero}</p>
       <div className="hero-actions"><Link className="hero-primary" href="/contact">Discuss your project<span aria-hidden="true">↗</span></Link><a className="hero-secondary" href="#work">View selected work<span aria-hidden="true">↓</span></a></div>
     </div></div>
