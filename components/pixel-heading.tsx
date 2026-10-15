@@ -19,7 +19,7 @@ export function PixelHeading({ lines }: { lines: string[] }) {
       surface.width = Math.ceil(bounds.width / scale);
       surface.height = Math.ceil(bounds.height / scale);
       context.fillStyle = style.color;
-      context.font = `${parseFloat(style.fontSize) / scale}px Georgia`;
+      context.font = `${style.fontStyle} ${style.fontWeight} ${parseFloat(style.fontSize) / scale}px ${style.fontFamily}`;
       context.textBaseline = "top";
       // Range positions follow browser wrapping, keeping canvas and semantic text aligned.
       element.querySelectorAll(".pixel-line").forEach(line => {

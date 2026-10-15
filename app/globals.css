@@ -10,7 +10,7 @@
   --accent: #c84b2b;
   --accent-bright: #ff754f;
   --display: Georgia, "Times New Roman", serif;
-  --sans: var(--font-haas), Arial, sans-serif;
+  --sans: var(--display);
   --container: 1280px;
   --gutter: clamp(24px, 5vw, 80px);
   --section: clamp(88px, 9vw, 128px);

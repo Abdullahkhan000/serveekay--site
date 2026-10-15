@@ -20,7 +20,9 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
   const index = projects.findIndex(item => item.slug === slug);
   if (index < 0) notFound();
   const project = projects[index];
-  const next = projects[(index + 1) % projects.length];
+  const published = projects.filter(item => item.image);
+  const publishedIndex = published.findIndex(item => item.slug === slug);
+  const next = published[(publishedIndex + 1) % published.length];
   const related = projects.filter(item => item.slug !== slug && item.image).slice(0, 2);
   return <PortfolioCasePage key={slug} project={project} next={next} related={related} />;
 }

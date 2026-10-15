@@ -55,11 +55,11 @@ function About() {
 }
 
 function Work() {
-  return <section className="section work-section" id="work" data-nav-theme="light"><span className="anchor-alias" id="portfolio" /><span className="anchor-alias" id="projects" /><div className="container">
-    <div className="portfolio-masthead"><span className="eyebrow">/ The portfolio</span><span>Independent designer · Selected work</span></div>
-    <div className="portfolio-heading"><SectionHeading label="Ideas made tangible">Selected work.<br /><em>Lasting impressions.</em></SectionHeading><div><p className="work-intro">Digital products with a point of view. A curated collection of interfaces, experiences, and ideas brought to life.</p><Link className="work-contact-link" href="/contact">Let&apos;s build something great<span aria-hidden="true">↗</span></Link></div></div>
+  return <section className="atelier-work" id="work" data-nav-theme="dark" aria-labelledby="atelier-title"><span className="anchor-alias" id="portfolio" /><span className="anchor-alias" id="projects" /><div className="atelier-container">
+    <div className="atelier-masthead"><span><i />Independent design / Selected work</span><span>Digital experiences, made with intention.</span></div>
+    <header className="atelier-heading"><div><p className="atelier-small">A few things I put my heart into</p><h2 id="atelier-title">Selected<br /><em>work.</em><sup>({String(projects.filter(project => project.image).length).padStart(2, "0")})</sup></h2></div><div className="atelier-heading-aside"><span className="atelier-heading-star" aria-hidden="true">&#10035;</span><p>From the first idea to the final interaction. A collection of brands, products, and digital worlds brought to life.</p><a href="#atelier-projects">Scroll into the details <span aria-hidden="true">&darr;</span></a></div></header>
     <WorkCarousel projects={projects} />
-    {projects.filter(project => !project.image).map(project => <Link className="project-in-progress" href={`/work/${project.slug}`} key={project.slug}><span className="eyebrow">/ {project.discipline}</span><h3>{project.title}</h3><span>{project.description}</span><Arrow /></Link>)}
+    {projects.filter(project => !project.image).map(project => <Link className="atelier-upcoming" href={`/work/${project.slug}`} key={project.slug}><span className="atelier-small">On the drawing board</span><h3>{project.title}</h3><span>{project.description}</span><Arrow /></Link>)}
   </div></section>;
 }
 
