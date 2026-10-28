@@ -1,7 +1,7 @@
 .heading.heading.heading {
   font-family: var(--display);
-  font-size: clamp(26px, 3.1vw, 44px);
-  font-style: normal;
+  font-size: 60px;
+  font-style: italic;
   font-weight: 400;
   line-height: 1.25;
   letter-spacing: -.045em;
@@ -10,13 +10,13 @@
 .intro { display: block; }
 
 .services {
-  display: grid;
+  display: block;
   overflow: hidden;
   padding-block: .08em .18em;
 }
 
 .service {
-  grid-area: 1 / 1;
+  display: block;
   width: fit-content;
   max-width: 100%;
   background-clip: text;
@@ -24,20 +24,19 @@
   color: transparent;
   opacity: 0;
   transform: translateY(110%);
-  animation: service-cycle 10s cubic-bezier(.22, 1, .36, 1) infinite;
+  animation: service-cycle 2s cubic-bezier(.22, 1, .36, 1) both;
 }
 
-.service0 { background-image: linear-gradient(100deg, #a4d6c3, #459fd0); animation-delay: -10s; }
-.service1 { background-image: linear-gradient(100deg, #df9bda, #d94c86); animation-delay: -8s; }
-.service2 { background-image: linear-gradient(100deg, #e7cc85, #e56b36); animation-delay: -6s; }
-.service3 { background-image: linear-gradient(100deg, #843ff3, #cccef4); animation-delay: -4s; }
-.service4 { background-image: linear-gradient(100deg, #a6e2ce, #4bce9c); animation-delay: -2s; }
+.service0 { background-image: linear-gradient(100deg, #a4d6c3, #459fd0); }
+.service1 { background-image: linear-gradient(100deg, #df9bda, #d94c86); }
+.service2 { background-image: linear-gradient(100deg, #e7cc85, #e56b36); }
+.service3 { background-image: linear-gradient(100deg, #843ff3, #cccef4); }
+.service4 { background-image: linear-gradient(100deg, #a6e2ce, #4bce9c); }
 
 @keyframes service-cycle {
-  0%, 16% { opacity: 1; transform: translateY(0); }
-  20%, 96% { opacity: 0; transform: translateY(-110%); }
-  96.01% { opacity: 0; transform: translateY(110%); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% { opacity: 0; transform: translateY(110%); }
+  15%, 80% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-110%); }
 }
 
 @media (max-width: 760px) {
@@ -45,6 +44,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .service { animation: none; opacity: 0; transform: none; }
-  .service0 { opacity: 1; }
+  .service { animation: none; opacity: 1; transform: none; }
 }

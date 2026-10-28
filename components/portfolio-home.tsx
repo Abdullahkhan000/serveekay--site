@@ -2,7 +2,7 @@ import Image from "next/image";
 import heroPortrait from "@/public/images/waleed-portrait.webp";
 import aboutPortrait from "@/public/images/waleed-portrait.jpg";
 import Link from "next/link";
-import { capabilities, disciplines, faqs, identity, originalMessaging, pricing, projects, services, serviceMessaging, toolkit, workflow } from "@/data/site";
+import { capabilities, disciplines, faqs, identity, originalMessaging, pricing, projects, services, toolkit, workflow } from "@/data/site";
 import { Arrow, ButtonLink, SectionHeading } from "@/components/ui";
 import { ServiceList } from "@/components/service-list";
 import { Testimonials } from "@/components/testimonials";
@@ -23,9 +23,7 @@ function Hero() {
     <div className="container hero-content"><div className="hero-copy" data-reveal>
       <p className="hero-kicker"><span /> Independent product designer</p>
       <HeroHeading />
-      <p className="hero-role">Your product design partner.</p>
-      <p className="hero-description">{serviceMessaging.headline}</p>
-      <p className="hero-description hero-supporting">{originalMessaging.hero}</p>
+      <p className="hero-description hero-supporting">I collaborate with Startups &amp; Founders to help craft beautiful + functional digital experiences.</p>
       <div className="hero-actions"><Link className="hero-primary" href="/contact">Discuss your project<span aria-hidden="true">↗</span></Link><a className="hero-secondary" href="#work">View selected work<span aria-hidden="true">↓</span></a></div>
     </div></div>
     <ProjectMarquee />
@@ -93,7 +91,7 @@ function Pricing() {
 export function PortfolioHome() {
   return <div className="portfolio-home">
     <Hero /><InquiryStrip />
-    <section className="section container split-section" id="services" data-nav-theme="light"><SectionHeading label="My services">Have an idea?<br />Let&apos;s find the<br /><em>right direction.</em></SectionHeading><ServiceList /></section>
+    <section className="section container split-section" id="services" data-nav-theme="light"><header className="section-heading" data-reveal><h2 className="eyebrow">/ My services</h2></header><ServiceList /></section>
     <About /><Work /><RecentWork /><Process /><Skills /><MediaShowcase /><Pricing />
     <section className="section container split-section" id="testimonials" data-nav-theme="light"><SectionHeading label="Kind words">A little love<br />from <em>clients.</em></SectionHeading><Testimonials /></section>
     <section className="section container split-section faq-section" id="faqs" data-nav-theme="light"><SectionHeading label="Need to know">FAQ&apos;s &amp;<br /><em>shenanigans.</em></SectionHeading><div className="faq-list">{faqs.map(([question, answer], index) => <details name="faqs" key={question} data-reveal><summary><span className="faq-number">0{index + 1}</span><h3>{question}</h3><span className="disclosure-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></section>
