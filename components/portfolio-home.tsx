@@ -15,13 +15,14 @@ import { ScrollText } from "@/components/scroll-text";
 import { WorkCarousel } from "@/components/work-carousel";
 import { RollingText } from "@/components/rolling-text";
 import { ProductizedOffers } from "@/components/productized-offers";
+import { HeroHeading } from "@/components/hero-heading";
 
 function Hero() {
   return <section className="hero" id="home" data-nav-theme="dark" aria-labelledby="hero-title">
     <div className="hero-portrait"><Image src={heroPortrait} alt="Waleed, the product designer behind Serveekay" fill preload sizes="(max-width: 760px) 100vw, 60vw" /></div>
     <div className="container hero-content"><div className="hero-copy" data-reveal>
       <p className="hero-kicker"><span /> Independent product designer</p>
-      <h1 id="hero-title"><span className="hero-intro">I am</span> <span className="hero-name">{identity.name}.</span></h1>
+      <HeroHeading />
       <p className="hero-role">Your product design partner.</p>
       <p className="hero-description">{serviceMessaging.headline}</p>
       <p className="hero-description hero-supporting">{originalMessaging.hero}</p>
