@@ -2,6 +2,8 @@
 .portfolio-home { background: #fdfcf9; }
 .portfolio-home .eyebrow { font-size: 11px; letter-spacing: .13em; }
 .portfolio-home .section-heading h2 { font-size: clamp(42px, 4.4vw, 68px); }
+.portfolio-home #services .services-display-heading { font-family: var(--display); font-size: clamp(64px, 7vw, 108px); font-weight: 400; line-height: .79; letter-spacing: -.065em; }
+.services-display-heading em { display: inline-block; padding-top: 7px; color: #e8a184; }
 .portfolio-home .heading-row > p { line-height: 1.7; font-size: 16px; }
 .site-header:not(.on-dark) .header-inner { background: #fdfcf9ed; backdrop-filter: blur(20px); box-shadow: 0 6px 24px #1c1c1a04; }
 .site-header.on-dark .header-inner { border-color: #ffffff12; background: #181b1933; backdrop-filter: blur(16px); }
@@ -76,8 +78,8 @@
 .portfolio-home .price-plan .button { font-size: 14px; min-width: 190px; }
 .portfolio-home .price-plan__top > span { font-size: 10px; padding: 7px 12px; }
 .portfolio-home .productized-offers { border-color: #d6cfbf; }
-.portfolio-home .offers-grid { gap: 16px; }
-.portfolio-home .offer-card { background: #f9f7f1; border-radius: 22px; padding: 30px 26px; border-color: #dbd5c8; }
+.portfolio-home .offers-grid { gap: 20px; align-items: start; }
+.portfolio-home .offer-card { display: flex; flex-direction: column; background: #f9f7f1; border-radius: 22px; padding: 26px 24px; border-color: #dbd5c8; }
 .portfolio-home .offer-card:nth-child(2) { background: #e7e9dd; border-color: #ccd1bc; }
 .portfolio-home .offer-card:nth-child(2) .offer-number { border-color: #bcc5a9; color: #536043; }
 .portfolio-home .offer-card:nth-child(2) .offer-cta-arrow { background: #d4dac6; }
@@ -87,11 +89,37 @@
 .portfolio-home .offer-card:hover { border-color: #aea38f; box-shadow: 0 14px 40px #2c28110a; }
 .portfolio-home .offer-cta:hover .offer-cta-arrow { background: #20251f; }
 .portfolio-home .offers-note { max-width: 850px; }
-@supports (grid-template-rows: subgrid) {
-  .portfolio-home .offers-grid { row-gap: 0; }
-  .portfolio-home .offer-card { display: grid; grid-template-rows: subgrid; grid-row: span 8; align-items: start; }
-  .portfolio-home .offer-card h4, .portfolio-home .offer-audience { min-height: 0; }
-  .portfolio-home .offer-card details { margin-top: 0; }
+.portfolio-home .offer-card .offer-price { font-size: clamp(27px, 2.4vw, 36px); overflow-wrap: anywhere; }
+.offer-delivery { padding-bottom: 24px; }
+.offer-delivery p { color: var(--muted); }
+.portfolio-home .offer-card.offer-card--dark { background: #111111; border-color: #333333; color: #f8f7f3; }
+.portfolio-home .offer-card--dark .offer-type,
+.portfolio-home .offer-card--dark .offer-price-label,
+.portfolio-home .offer-card--dark .offer-price > span,
+.portfolio-home .offer-card--dark .offer-timeline,
+.portfolio-home .offer-card--dark .offer-audience,
+.portfolio-home .offer-card--dark .offer-delivery p,
+.portfolio-home .offer-card--dark details p { color: #c9c7c2; }
+.portfolio-home .offer-card--dark .offer-investment,
+.portfolio-home .offer-card--dark details,
+.portfolio-home .offer-card--dark .offer-cta { border-color: #3b3b3b; }
+.portfolio-home .offer-card--dark .offer-number { border-color: #555555; color: #ed9774; }
+.portfolio-home .offer-card--dark li::before,
+.portfolio-home .offer-card--dark summary > span { color: #ed9774; }
+.portfolio-home .offer-card--dark .offer-cta-arrow { background: #f1eee7; color: #191b1a; }
+.portfolio-home .offer-card--dark .offer-cta:hover .offer-cta-arrow { background: #ed9774; color: #111111; }
+.portfolio-home .offer-card h4 { min-height: 0; margin: 20px 0 18px; font-size: clamp(24px, 2vw, 29px); }
+.portfolio-home .offer-card .offer-investment { padding-block: 14px; }
+.portfolio-home .offer-card .offer-price { margin-block: 6px 8px; }
+.portfolio-home .offer-card .offer-audience { min-height: 0; margin-block: 16px 20px; font-size: 14px; line-height: 1.6; }
+.portfolio-home .offer-card .offer-details { margin-top: 0; padding-block: 14px; }
+.portfolio-home .offer-card .offer-details h5 { margin-block: 18px 10px; }
+.portfolio-home .offer-card .offer-details li + li { margin-top: 8px; }
+.portfolio-home .offer-card .offer-details ul { margin-bottom: 16px; }
+.portfolio-home .offer-card .offer-details p { padding-top: 0; }
+.portfolio-home .offer-card .offer-delivery { padding-bottom: 0; }
+@media (min-width: 761px) and (max-width: 1100px) {
+  .portfolio-home .productized-offers .offers-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 .portfolio-home .testimonial { background: #f2efe7; border: 1px solid #e1dacb; border-radius: 24px; padding: 36px; }
@@ -263,6 +291,9 @@ body, body *, body *::before, body *::after {
 .atelier-project-top i { font-style: normal; color: #6e7a65; }
 .atelier-stage { position: relative; isolation: isolate; display: flex; align-items: center; justify-content: center; min-height: 440px; aspect-ratio: 1.35; overflow: hidden; border-radius: 8px; background: var(--project-color); }
 .atelier-stage::after { content: ""; position: absolute; z-index: -1; inset: 0; background: radial-gradient(ellipse at 50% 35%, #ffffff55, transparent 65%), linear-gradient(145deg, #ffffff15, #00000015); pointer-events: none; }
+.atelier-stage--full-image { background: transparent; }
+.atelier-stage--full-image::after { display: none; }
+.atelier-stage--full-image > img { object-fit: cover; object-position: center; }
 .atelier-stage-word { position: absolute; z-index: -1; top: 20px; left: 50%; transform: translateX(-50%); color: #ffffff45; font-size: clamp(70px, 9vw, 150px); line-height: 1; letter-spacing: -.07em; white-space: nowrap; }
 .atelier-artwork { width: 86%; position: relative; box-shadow: 0 30px 50px -20px #141a3259; border: 1px solid #ffffff45; border-radius: 5px; overflow: hidden; }
 .atelier-artwork img { display: block; width: 100%; height: auto; max-height: 540px; object-fit: contain; }

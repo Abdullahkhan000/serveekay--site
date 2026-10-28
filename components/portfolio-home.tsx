@@ -94,7 +94,7 @@ function Pricing() {
 export function PortfolioHome() {
   return <div className="portfolio-home">
     <Hero /><InquiryStrip />
-    <section className="section container split-section" id="services" data-nav-theme="light"><header className="section-heading" data-reveal><h2 className="eyebrow">/ My services</h2></header><ServiceList /></section>
+    <section className="section container split-section" id="services" data-nav-theme="light"><header className="section-heading" data-reveal><h2 className="services-display-heading">My<br /><em>services.</em></h2></header><ServiceList /></section>
     <About /><Work /><RecentWork /><Process />{showSkillsSection && <Skills />}<MediaShowcase /><Pricing />
     <section className="section container split-section" id="testimonials" data-nav-theme="light"><SectionHeading label="Kind words">A little love<br />from <em>clients.</em></SectionHeading><Testimonials /></section>
     <section className="section container split-section faq-section" id="faqs" data-nav-theme="light"><SectionHeading label="Need to know">FAQ&apos;s &amp;<br /><em>shenanigans.</em></SectionHeading><div className="faq-list">{faqs.map(([question, answer], index) => <details name="faqs" key={question} data-reveal><summary><span className="faq-number">0{index + 1}</span><h3>{question}</h3><span className="disclosure-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></section>

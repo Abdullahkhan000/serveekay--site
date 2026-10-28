@@ -11,6 +11,7 @@ const surfaces = ["#b9c7df", "#d0d6ae", "#c2b2d5", "#c3b8e0", "#e1bdc6", "#b3d0d
 const number = (value: number) => String(value).padStart(2, "0");
 
 function ProjectPanel({ project, index, total }: { project: Project; index: number; total: number }) {
+  const fullImage = project.slug === "verdilock";
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
@@ -19,11 +20,13 @@ function ProjectPanel({ project, index, total }: { project: Project; index: numb
   return <article ref={ref} id={`work-${project.slug}`} className="atelier-project" data-project={project.slug} style={{ "--project-color": surfaces[index % surfaces.length] } as React.CSSProperties}>
     <Link href={`/work/${project.slug}`} className="atelier-project-link" aria-label={`Explore ${project.title}: ${project.description}`}>
       <div className="atelier-project-top"><span>{number(index + 1)} <i>/ {number(total)}</i></span><span>{project.discipline}</span><span>{project.year}</span></div>
-      <div className="atelier-stage">
+      <div className={`atelier-stage${fullImage ? " atelier-stage--full-image" : ""}`}>
+        {fullImage ? <Image src="/images/verdilock-full.webp" alt="Verdilock cybersecurity landing page and pricing design" fill unoptimized sizes="(max-width: 760px) 95vw, (max-width: 1100px) 75vw, 1136px" /> : <>
         <span className="atelier-stage-word" aria-hidden="true">{project.title}</span>
         <motion.div className="atelier-artwork" style={reduce ? undefined : { y, scale }}><Image src={project.image} alt={`${project.title} digital product and interface design`} width={project.imageWidth ?? 1500} height={project.imageHeight ?? 952} sizes="(max-width: 760px) 90vw, 65vw" /></motion.div>
+        </>}
         <span className="atelier-view">Explore project <span aria-hidden="true">↗</span></span>
-        <span className="atelier-stage-note">Serveekay / Selected work</span>
+        {!fullImage && <span className="atelier-stage-note">Serveekay / Selected work</span>}
       </div>
       <div className="atelier-project-bottom"><div><span className="atelier-small">{project.discipline.split(" / ")[0]} experience</span><h3>{project.title}</h3></div><p>{project.description}</p><span className="atelier-open" aria-hidden="true">↗</span></div>
     </Link>
