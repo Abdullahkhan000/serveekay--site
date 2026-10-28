@@ -1,7 +1,7 @@
 .heading.heading.heading {
   font-family: var(--display);
   font-size: 60px;
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   line-height: 1.25;
   letter-spacing: -.045em;
@@ -11,6 +11,9 @@
 
 .services {
   display: block;
+  font-style: italic;
+  white-space: nowrap;
+  letter-spacing: -.045em;
   overflow: hidden;
   padding-block: .08em .18em;
 }
