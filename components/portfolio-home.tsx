@@ -19,6 +19,8 @@ import { HeroHeading } from "@/components/hero-heading";
 
 // Set to true to show the complete My skills section again.
 const showSkillsSection = false;
+// Set to true to restore the Explore selected work section.
+const showRecentWorkSection = false;
 // Set to true to restore the Monthly and Fixed project pricing plans.
 const showPartnershipPlans = false;
 
@@ -99,7 +101,7 @@ export function PortfolioHome() {
   return <div className="portfolio-home">
     <Hero /><InquiryStrip />
     <section className="section container split-section" id="services" data-nav-theme="light"><header className="section-heading" data-reveal><h2 className="services-display-heading">My<br /><em>services.</em></h2></header><ServiceList /></section>
-    <About /><Work /><RecentWork /><Process />{showSkillsSection && <Skills />}<MediaShowcase /><Pricing />
+    <About /><Work />{showRecentWorkSection && <RecentWork />}<Process />{showSkillsSection && <Skills />}<MediaShowcase /><Pricing />
     <section className="section container split-section" id="testimonials" data-nav-theme="light"><SectionHeading label="Kind words">A little love<br />from <em>clients.</em></SectionHeading><Testimonials /></section>
     <section className="section container split-section faq-section" id="faqs" data-nav-theme="light"><SectionHeading label="Need to know">FAQ&apos;s &amp;<br /><em>shenanigans.</em></SectionHeading><div className="faq-list">{faqs.map(([question, answer], index) => <details name="faqs" key={question} data-reveal><summary><span className="faq-number">0{index + 1}</span><h3>{question}</h3><span className="disclosure-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></section>
     <section className="section contact-section" id="contact" data-nav-theme="light"><div className="container contact-grid"><div><SectionHeading label="Get in touch">Let&apos;s<br /><em>connect.</em></SectionHeading><p>Have a product, a fresh idea, or a question? I&apos;d love to hear about it.</p><a className="contact-email" href={`mailto:${identity.email}`}>{identity.email} ↗</a><div className="contact-original"><h3>{originalMessaging.contactTitle}</h3><p>{originalMessaging.contactCopy}</p></div></div><ContactForm /></div></section>

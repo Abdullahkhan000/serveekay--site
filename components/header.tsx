@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { identity, navigation } from "@/data/site";
 import { RollingText } from "@/components/rolling-text";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Header() {
   const pathname = usePathname();
@@ -81,7 +82,7 @@ function Navigation({ home }: { home: boolean }) {
     <div className="header-inner">
       <Link href="/" className="wordmark" aria-label="Serveekay home" tabIndex={open ? -1 : undefined}>serveekay<span>.</span></Link>
       <nav className="desktop-nav" aria-label="Primary navigation">{navigation.map(link => <Link key={link.href} href={link.href} className={link.href === "/contact" ? "nav-contact" : "nav-link"}><RollingText text={link.label} /></Link>)}</nav>
-      <button ref={toggle} className="menu-toggle" type="button" aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? "Close navigation" : "Open navigation"} onClick={() => setOpen(value => !value)}><span /><span /></button>
+      <div className="header-actions"><ThemeToggle tabIndex={open ? -1 : undefined} /><button ref={toggle} className="menu-toggle" type="button" aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? "Close navigation" : "Open navigation"} onClick={() => setOpen(value => !value)}><span /><span /></button></div>
     </div>
     <div ref={panel} id="mobile-navigation" className="mobile-navigation" inert={!open} aria-hidden={!open}>
       <p className="eyebrow">/ Explore</p>

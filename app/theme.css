@@ -1,0 +1,151 @@
+/* Shared semantic colors. Image assets and their presentation surfaces retain their own colors. */
+:root, :root[data-theme="light"] {
+  color-scheme: light;
+  --paper: #fdfcf9;
+  --warm: #eeeae1;
+  --soft: #f4f2ec;
+  --ink: #242720;
+  --muted: #5e6259;
+  --line: #d7d8ce;
+  --accent: #a73d24;
+  --accent-bright: #b7462c;
+  --surface: #ffffff;
+  --surface-raised: #f8f6ef;
+  --hover-surface: #e7e9df;
+  --hero-bg: #f0eee7;
+  --hero-rgb: 240, 238, 231;
+  --nav-bg: #fdfcf9ed;
+  --button-bg: #252b23;
+  --button-text: #ffffff;
+  --focus: #a73d24;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #121613;
+  --warm: #1c211c;
+  --soft: #202620;
+  --ink: #f1f0e9;
+  --muted: #bbc2b5;
+  --line: #424b3f;
+  --accent: #f0ac8c;
+  --accent-bright: #f0ac8c;
+  --surface: #202620;
+  --surface-raised: #272e26;
+  --hover-surface: #343e30;
+  --hero-bg: #191b1a;
+  --hero-rgb: 25, 27, 26;
+  --nav-bg: #191e19ed;
+  --button-bg: #eeeae1;
+  --button-text: #20251e;
+  --focus: #f0ac8c;
+}
+
+:root[data-theme] body { background: var(--paper); color: var(--ink); }
+:root[data-theme] ::selection { background: var(--accent); color: var(--paper); }
+:root[data-theme] :focus-visible { outline-color: var(--focus); }
+:root[data-theme] em { color: var(--accent); }
+:root[data-theme] .portfolio-home { background: var(--paper); color: var(--ink); }
+.header-actions { display: flex; align-items: center; gap: 8px; }
+.theme-toggle { display: grid; place-items: center; flex: 0 0 44px; width: 44px; height: 44px; padding: 10px; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: inherit; transition: background .2s; }
+.theme-toggle:hover { background: var(--hover-surface); }
+.theme-toggle svg { width: 21px; height: 21px; grid-area: 1 / 1; }
+.theme-icon-sun { display: none; }
+:root[data-theme="dark"] .theme-icon-sun { display: block; }
+:root[data-theme="dark"] .theme-icon-moon { display: none; }
+:root[data-theme] .site-header { color: var(--ink); }
+:root[data-theme] .site-header .header-inner { background: var(--nav-bg); border-color: var(--line); box-shadow: 0 6px 24px #0000000a; }
+:root[data-theme] .site-header .nav-contact { background: var(--button-bg); color: var(--button-text); }
+:root[data-theme] .site-header .nav-contact:hover { background: var(--accent); color: var(--paper); }
+:root[data-theme] .mobile-navigation { background: var(--paper); color: var(--ink); }
+:root[data-theme] .mobile-navigation :is(.eyebrow, nav a > span:first-child, .mobile-navigation__bottom p) { color: var(--muted); }
+:root[data-theme] .mobile-navigation nav a { border-color: var(--line); }
+
+/* Hero: the portrait is never inverted; only the surrounding surface and text change. */
+:root[data-theme] .portfolio-home .hero { background: var(--hero-bg); color: var(--ink); }
+:root[data-theme] .portfolio-home .hero::after { background: linear-gradient(90deg, var(--hero-bg) 0%, var(--hero-bg) 31%, rgba(var(--hero-rgb), .92) 40%, rgba(var(--hero-rgb), .27) 55%, transparent 72%), linear-gradient(0deg, var(--hero-bg), transparent 20%); }
+:root[data-theme] .portfolio-home .hero-portrait::after { background: linear-gradient(90deg, var(--hero-bg), transparent 18%, transparent 85%, var(--hero-bg)), linear-gradient(0deg, var(--hero-bg), transparent 20%); }
+:root[data-theme] .hero-kicker, :root[data-theme] .portfolio-home .hero-description, :root[data-theme] .portfolio-home .hero-supporting { color: var(--muted); }
+:root[data-theme] .hero-secondary { color: var(--ink); border-color: var(--line); }
+:root[data-theme] .hero-primary { background: var(--button-bg); color: var(--button-text); }
+:root[data-theme] .hero-primary:hover { background: var(--accent); color: var(--paper); }
+:root[data-theme] .portfolio-home .project-marquee { color: var(--muted); border-color: var(--line); }
+:root[data-theme] .marquee-pause { background: var(--button-bg); color: var(--button-text); border-color: var(--line); }
+:root[data-theme="light"] #hero-title [class*="service0"] { background-image: linear-gradient(100deg, #24664f, #205c87); }
+:root[data-theme="light"] #hero-title [class*="service1"] { background-image: linear-gradient(100deg, #8b337c, #a52a57); }
+:root[data-theme="light"] #hero-title [class*="service2"] { background-image: linear-gradient(100deg, #77551a, #a53f19); }
+:root[data-theme="light"] #hero-title [class*="service3"] { background-image: linear-gradient(100deg, #6631b0, #5c4799); }
+:root[data-theme="light"] #hero-title [class*="service4"] { background-image: linear-gradient(100deg, #25664f, #197258); }
+
+/* Shared content, forms, cards, labels, and previously hidden sections. */
+:root[data-theme] .portfolio-home :is(.inquiry-strip, .process-section) { background: var(--soft); }
+:root[data-theme] .portfolio-home :is(.about-section, #pricing, .contact-section) { background: var(--warm); }
+:root[data-theme] :is(.about-introduction, .about-highlight h3, .scroll-text, .service-number, .inquiry-arrow) { color: var(--muted); }
+:root[data-theme] .services-display-heading em { color: var(--accent); }
+:root[data-theme] :is(.read-more, .testimonial-full summary) { color: var(--accent); }
+:root[data-theme] .portfolio-home :is(.resource-card, .testimonial, .inquiry-form, .price-plan:not(.price-plan--dark)) { background: var(--surface); color: var(--ink); border-color: var(--line); }
+:root[data-theme] .portfolio-home :is(.avatar-initials, .toolkit li) { background: var(--soft); color: var(--ink); border-color: var(--line); }
+:root[data-theme] .portfolio-home :is(.service-item, .service-item .disclosure-icon, .toolkit, .resource-copy > a, .faq-list details, .recent-image, .productized-offers) { border-color: var(--line); }
+:root[data-theme] .resource-image { background: var(--soft); }
+:root[data-theme] .button { background: var(--button-bg); color: var(--button-text); }
+:root[data-theme] .button:hover { background: var(--accent); color: var(--paper); }
+:root[data-theme] .button--outline { background: transparent; color: var(--ink); border-color: var(--line); }
+:root[data-theme] .button--outline:hover { background: var(--button-bg); color: var(--button-text); }
+:root[data-theme] :is(.inquiry-form input, .inquiry-form textarea, .inquiry-form select, .quick-inquiry input, .project-form input, .project-form textarea, .project-form select) { background: var(--surface); color: var(--ink); border-color: var(--line); }
+:root[data-theme] input::placeholder, :root[data-theme] textarea::placeholder { color: var(--muted); opacity: 1; }
+:root[data-theme] select option { background: var(--surface); color: var(--ink); }
+:root[data-theme] .skip-link { background: var(--surface); color: var(--ink); }
+:root[data-theme] .portfolio-home .offer-card:not(.offer-card--dark) { background: var(--surface); color: var(--ink); border-color: var(--line); }
+:root[data-theme] .portfolio-home .offer-card:not(.offer-card--dark) :is(.offer-investment, details, .offer-cta, .offer-number) { border-color: var(--line); }
+:root[data-theme] .portfolio-home .offer-card:not(.offer-card--dark) .offer-number { color: var(--accent); }
+:root[data-theme] .portfolio-home .offer-card:not(.offer-card--dark) .offer-cta-arrow { background: var(--soft); color: var(--ink); }
+:root[data-theme] .portfolio-home .offer-card .offer-cta:hover .offer-cta-arrow { background: var(--accent); color: var(--paper); }
+/* Keep the two requested black packages readable in both themes. */
+:root[data-theme] .offer-card--dark, :root[data-theme] .price-plan--dark { --ink: #f8f7f3; --muted: #c9c7c2; --accent: #f0ac8c; --line: #555; }
+:root[data-theme] .price-plan--dark .button { background: #f1eee7; color: #20251e; }
+
+/* Collection: all editorial text follows the active surface, artwork remains untouched. */
+:root[data-theme] .atelier-work { --atelier-ink: var(--ink); --atelier-muted: var(--muted); --atelier-line: var(--line); --atelier-accent: var(--accent); background: var(--soft); color: var(--ink); }
+:root[data-theme] .atelier-project { background: var(--soft); }
+:root[data-theme] .atelier-work :is(.atelier-masthead, .atelier-heading-aside p, .atelier-heading h2 sup, .atelier-index-heading, .atelier-index nav a, .atelier-index-footer p, .atelier-index-count, .atelier-project-top, .atelier-project-top i, .atelier-project-bottom .atelier-small, .atelier-project-bottom p, .atelier-end > div, .atelier-upcoming > span) { color: var(--muted); }
+:root[data-theme] .atelier-project-bottom h3 { color: var(--ink); }
+:root[data-theme] .atelier-index nav a[aria-current="location"] { color: var(--ink); background: var(--hover-surface); }
+:root[data-theme] .atelier-index nav a:hover { color: var(--accent); }
+:root[data-theme] .atelier-index nav a, :root[data-theme] .atelier-open { border-color: var(--line); }
+:root[data-theme] .atelier-open { color: var(--ink); }
+:root[data-theme] .atelier-view { background: #18201b; color: #fff; }
+:root[data-theme] .atelier-filters button { color: var(--muted); }
+:root[data-theme] .atelier-filters button:hover { color: var(--ink); border-color: var(--line); }
+:root[data-theme] .atelier-filters button[aria-pressed="true"] { background: var(--button-bg); color: var(--button-text); }
+:root[data-theme] .atelier-project-link:hover .atelier-open { background: var(--button-bg); color: var(--button-text); border-color: var(--line); }
+
+/* Project detail pages, the sticky project dock, and related projects. */
+:root[data-theme] .case-editorial { --case-dark: var(--soft); --case-cream: var(--ink); --case-copper: var(--accent); }
+:root[data-theme] .case-premium { background: var(--paper); color: var(--ink); }
+:root[data-theme] :is(.case-premium-presentation, .case-premium-invitation, .case-premium-next, .case-cover, .case-next, .case-collaborate) { background: var(--soft); color: var(--ink); }
+:root[data-theme] .case-dock { background: var(--nav-bg); color: var(--ink); border-color: var(--line); }
+:root[data-theme] .case-dock > a, :root[data-theme] .case-dock a:hover, :root[data-theme] .case-premium-masthead a { color: var(--accent); }
+:root[data-theme] :is(.case-premium-masthead, .case-premium-title > p, .case-premium-subtitle > p, .case-premium-facts dt, .case-premium-story .case-micro, .case-premium-focus p, .case-premium-tags span, .case-premium-coming p, .case-premium-invitation .case-micro, .case-premium-invitation .container > div, .case-related-heading, .case-related-card > span, .case-related-card h3 > span, .case-next-heading, .case-next-foot, .case-artwork figcaption, .case-intro > p) { color: var(--muted); }
+:root[data-theme] .case-premium-facts dd { color: var(--ink); }
+:root[data-theme] :is(.case-premium-masthead, .case-premium-facts, .case-premium-focus, .case-premium-tags span, .case-related-card h3, .case-next-foot, .case-dock-title, .case-premium-invitation .container > div, .case-premium-subtitle a > span) { border-color: var(--line); }
+:root[data-theme] .case-reading-progress { background: var(--accent); }
+
+/* Secondary service, work, and project inquiry routes. */
+:root[data-theme] .business { --paper: inherit; --muted: inherit; background: var(--paper); color: var(--ink); }
+:root[data-theme] .business :is(.offer, .preview-label) { background: var(--surface); color: var(--ink); border-color: var(--line); }
+:root[data-theme] .business :is(.hero-bottom > p, .principles, .offer > p, .offer li, .collaboration p:not(.eyebrow)) { color: var(--muted); }
+:root[data-theme] .business :is(.business-header, .business-footer, .comparison td, .comparison th, .faq details, .offer li, .offer > a) { border-color: var(--line); }
+:root[data-theme] .final-cta { background: var(--soft); color: var(--ink); }
+:root[data-theme] .final-cta .eyebrow { color: var(--muted); }
+
+/* The footer remains the requested black signature surface in both modes. */
+:root[data-theme] .site-footer { --muted: #d0d0ca; --ink: #fff; --accent: #f0ac8c; background: #000; color: #fff; }
+:root[data-theme] .footer-panel, :root[data-theme] .footer-bottom { background: #000; color: #fff; }
+:root[data-theme] .footer-invitation em { color: #fff; }
+:root[data-theme] .footer-invitation .button { background: transparent; color: #fff; border-color: #ffffff80; }
+:root[data-theme] .footer-invitation .button:hover { background: #fff; color: #000; }
+
+@media (max-width: 760px) {
+  .header-actions { margin-left: auto; gap: 4px; }
+  :root[data-theme] .portfolio-home .hero::after { background: linear-gradient(0deg, var(--hero-bg) 0%, var(--hero-bg) 12%, rgba(var(--hero-rgb), .96) 32%, rgba(var(--hero-rgb), .6) 53%, transparent 78%); }
+}
+@media (prefers-reduced-motion: reduce) { .theme-toggle { transition: none; } }

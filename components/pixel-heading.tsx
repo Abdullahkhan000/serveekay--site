@@ -37,8 +37,10 @@ export function PixelHeading({ lines }: { lines: string[] }) {
     };
     const observer = new ResizeObserver(draw);
     observer.observe(element);
+    const themeObserver = new MutationObserver(draw);
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
     draw();
-    return () => { observer.disconnect(); element.classList.remove("pixel-ready"); };
+    return () => { observer.disconnect(); themeObserver.disconnect(); element.classList.remove("pixel-ready"); };
   }, [lines]);
   return <h2 className="pixel-heading" ref={heading}><span className="pixel-fallback">{lines.map(line => <span className="pixel-line" key={line}>{line}</span>)}</span><canvas ref={canvas} aria-hidden="true" /></h2>;
 }
