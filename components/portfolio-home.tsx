@@ -19,6 +19,8 @@ import { HeroHeading } from "@/components/hero-heading";
 
 // Set to true to show the complete My skills section again.
 const showSkillsSection = false;
+// Set to true to restore the Monthly and Fixed project pricing plans.
+const showPartnershipPlans = false;
 
 function Hero() {
   return <section className="hero" id="home" data-nav-theme="dark" aria-labelledby="hero-title">
@@ -84,9 +86,11 @@ function Skills() {
 }
 
 function Pricing() {
-  return <section className="section warm-panel" id="pricing" data-nav-theme="light"><div className="container">
+  return <section className={`section warm-panel${showPartnershipPlans ? "" : " pricing--packages-only"}`} id="pricing" data-nav-theme="light"><div className="container">
+    {showPartnershipPlans && <>
     <div className="heading-row"><SectionHeading label="Ways to work">Your project.<br /><em>Our partnership.</em></SectionHeading><p>A focused solution shaped around your project.</p></div>
     <div className="pricing-grid">{pricing.map((plan, index) => <article className={`price-plan${index === 0 ? " price-plan--dark" : ""}`} key={plan.label} data-reveal><div className="price-plan__top"><h3>{plan.label}</h3><span>{plan.note}</span></div><p className="price-value">{plan.price}{index === 0 && <small> / month</small>}</p><p>{plan.subtitle}</p><ul>{plan.features.map(feature => <li key={feature}>{feature}</li>)}</ul><ButtonLink href="/contact" light={index === 0}>Start a project</ButtonLink></article>)}</div>
+    </>}
     <ProductizedOffers />
   </div></section>;
 }
