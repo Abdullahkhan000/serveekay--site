@@ -122,7 +122,7 @@ details[open] > summary .disclosure-icon { transform: rotate(45deg); }
 summary:hover h3 { color: var(--accent); }
 .service-detail { padding: 26px 0 0 88px; }
 .service-image { position: relative; aspect-ratio: 1.75; overflow: hidden; border-radius: 12px; background: var(--soft); }
-.service-image img { object-fit: contain; }
+.service-image img { object-fit: cover; object-position: center; }
 .service-detail > p { margin-top: 18px; color: var(--muted); font-size: 14px; }
 .warm-panel { background: var(--warm); border-radius: var(--radius); }
 .about-facts { display: flex; gap: 56px; margin-block: 36px; }

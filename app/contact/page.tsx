@@ -14,5 +14,13 @@ export const metadata: Metadata = {
 export default async function ContactPage({ searchParams }: { searchParams: Promise<{ email?: string | string[] }> }) {
   const { email } = await searchParams;
   const defaultEmail = typeof email === "string" ? email.slice(0, 254) : "";
-  return <section className="container contact-page"><div className="contact-page-heading"><p className="eyebrow">/ Get in touch</p><h1>{serviceMessaging.prompt}<br />Let&apos;s find the<br /><em>right direction.</em></h1></div><div className="contact-grid"><div className="contact-page-aside"><p className="contact-lead">{serviceMessaging.description}</p><a className="contact-email" href={`mailto:${identity.email}`}>{identity.email} ↗</a><div className="contact-profile"><Image src="/images/waleed-avatar.webp" alt="Waleed" width={170} height={168} /><div><strong>{identity.name}</strong><p>{identity.role} · {identity.location}</p></div></div><p className="availability"><span />{identity.availability}</p></div><ContactForm defaultEmail={defaultEmail} /></div></section>;
+  return <section className="container contact-page" aria-labelledby="contact-title"><div className="contact-grid">
+    <div className="contact-page-aside">
+      <div className="contact-page-heading"><p className="eyebrow">/ Get in touch</p><h1 id="contact-title">{serviceMessaging.prompt}<br />Let&apos;s find the<br /><em>right direction.</em></h1><p className="contact-lead">A new website, a product to launch, or an experience to improve. Tell me where you want to go.</p></div>
+      <a className="contact-email" href={`mailto:${identity.email}`}><span className="contact-email-label">Write to me directly</span><span>{identity.email} <span aria-hidden="true">↗</span></span></a>
+      <div className="contact-profile"><Image src="/images/waleed-avatar.webp" alt="Waleed" width={170} height={168} /><div><strong>{identity.name}</strong><p>{identity.role} · {identity.location}</p></div></div>
+      <p className="availability"><span />{identity.availability}</p>
+    </div>
+    <ContactForm defaultEmail={defaultEmail} />
+  </div></section>;
 }

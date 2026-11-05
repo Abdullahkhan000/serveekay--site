@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import "./premium.css";
 import "./theme.css";
+import "./contact.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { serviceMessaging } from "@/data/site";

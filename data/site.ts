@@ -45,14 +45,14 @@ export const serviceMessaging = {
 
 export const projects: Project[] = [
   { slug: "inka", title: "INKA", description: "Project case study in progress.", image: "", year: "In progress", discipline: "Selected work", tone: "tone-olive" },
-  { slug: "verdilock", title: "Verdilock", description: "Cybersecurity (Design + Development)", image: "/images/work-verdilock.webp", imageWidth: 1500, imageHeight: 952, year: "2025", discipline: "Cybersecurity / Product", tone: "tone-blue", featured: true },
-  { slug: "lonu", title: "LONU", description: "Your budget and dietary goals restaurants finder", image: "/images/work-lonu.webp", imageWidth: 882, imageHeight: 952, year: "2025", discipline: "Mobile / Product", tone: "tone-olive" },
-  { slug: "cybon", title: "CYBON", description: "Penetration tests for website owners, online stores, providers, and anyone who processes sensitive data.", image: "/images/work-cybon.webp", imageWidth: 882, imageHeight: 954, year: "2025", discipline: "Security / Web app", tone: "tone-violet" },
-  { slug: "zippytal", title: "ZippyTAL", description: "Online training and learning platform to enhance and boost your skills", image: "/images/work-zippytal.webp", imageWidth: 1500, imageHeight: 952, year: "2024", discipline: "EdTech / Web", tone: "tone-purple", featured: true },
-  { slug: "stack-days", title: "Stack Days", description: "Online training and learning platform to enhance and boost your skills", image: "/images/work-stack-days.webp", imageWidth: 1500, imageHeight: 952, year: "2024", discipline: "Learning / Product", tone: "tone-rose", featured: true },
-  { slug: "coche", title: "Coche", description: "Your daily life ride booking app with advanced AI features", image: "/images/work-coche.webp", imageWidth: 768, imageHeight: 829, year: "2024", discipline: "Mobility / Mobile", tone: "tone-cyan" },
-  { slug: "picscroll", title: "PICSCROLL", description: "Discover and connect with endless meme images", image: "/images/work-picscroll.webp", imageWidth: 882, imageHeight: 952, year: "2023", discipline: "Social / Mobile", tone: "tone-sand" },
-  { slug: "boomerang", title: "Boomerang", description: "Let’s date and make connections", image: "/images/work-boomerang.webp", imageWidth: 1500, imageHeight: 952, year: "2023", discipline: "Dating / Product", tone: "tone-pink", featured: true },
+  { slug: "verdilock", title: "Verdilock", description: "Cybersecurity (Design + Development)", image: "/images/verdilock-full.webp", imageWidth: 1457, imageHeight: 1080, year: "2025", discipline: "Cybersecurity / Product", tone: "tone-blue", featured: true },
+  { slug: "lonu", title: "LONU", description: "Your budget and dietary goals restaurants finder", image: "/images/work-lonu.webp", imageWidth: 1456, imageHeight: 1080, year: "2025", discipline: "Mobile / Product", tone: "tone-olive" },
+  { slug: "cybon", title: "CYBON", description: "Penetration tests for website owners, online stores, providers, and anyone who processes sensitive data.", image: "/images/work-cybon.webp", imageWidth: 1456, imageHeight: 1080, year: "2025", discipline: "Security / Web app", tone: "tone-violet" },
+  { slug: "zippytal", title: "ZippyTAL", description: "Online training and learning platform to enhance and boost your skills", image: "/images/work-zippytal.webp", imageWidth: 1575, imageHeight: 999, year: "2024", discipline: "EdTech / Web", tone: "tone-purple", featured: true },
+  { slug: "stack-days", title: "Stack Days", description: "Online training and learning platform to enhance and boost your skills", image: "/images/work-stack-days.webp", imageWidth: 1575, imageHeight: 999, year: "2024", discipline: "Learning / Product", tone: "tone-rose", featured: true },
+  { slug: "coche", title: "Coche", description: "Your daily life ride booking app with advanced AI features", image: "/images/work-coche.webp", imageWidth: 1456, imageHeight: 1080, year: "2024", discipline: "Mobility / Mobile", tone: "tone-cyan" },
+  { slug: "picscroll", title: "PICSCROLL", description: "Discover and connect with endless meme images", image: "/images/work-picscroll.webp", imageWidth: 1456, imageHeight: 1080, year: "2023", discipline: "Social / Mobile", tone: "tone-sand" },
+  { slug: "boomerang", title: "Boomerang", description: "Let’s date and make connections", image: "/images/work-boomerang.webp", imageWidth: 1575, imageHeight: 998, year: "2023", discipline: "Dating / Product", tone: "tone-pink", featured: true },
 ];
 
 export const services = [

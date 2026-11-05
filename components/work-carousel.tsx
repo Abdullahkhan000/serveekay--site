@@ -13,7 +13,7 @@ const fullImageProjects = new Set(["verdilock", "lonu", "cybon", "zippytal", "st
 
 function ProjectPanel({ project, index, total }: { project: Project; index: number; total: number }) {
   const fullImage = fullImageProjects.has(project.slug);
-  const fullImageSource = project.slug === "verdilock" ? "/images/verdilock-full.webp" : project.image;
+  const fullImageSource = project.image;
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
