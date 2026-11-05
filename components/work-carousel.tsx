@@ -9,9 +9,11 @@ import type { Project } from "@/data/site";
 const filters = ["All projects", "Web & product", "Mobile"] as const;
 const surfaces = ["#b9c7df", "#d0d6ae", "#c2b2d5", "#c3b8e0", "#e1bdc6", "#b3d0d1", "#d8c9af", "#dfbdc9"];
 const number = (value: number) => String(value).padStart(2, "0");
+const fullImageProjects = new Set(["verdilock", "lonu", "cybon", "zippytal", "stack-days", "coche", "picscroll", "boomerang"]);
 
 function ProjectPanel({ project, index, total }: { project: Project; index: number; total: number }) {
-  const fullImage = project.slug === "verdilock";
+  const fullImage = fullImageProjects.has(project.slug);
+  const fullImageSource = project.slug === "verdilock" ? "/images/verdilock-full.webp" : project.image;
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
@@ -21,7 +23,7 @@ function ProjectPanel({ project, index, total }: { project: Project; index: numb
     <Link href={`/work/${project.slug}`} className="atelier-project-link" aria-label={`Explore ${project.title}: ${project.description}`}>
       <div className="atelier-project-top"><span>{number(index + 1)} <i>/ {number(total)}</i></span><span>{project.discipline}</span><span>{project.year}</span></div>
       <div className={`atelier-stage${fullImage ? " atelier-stage--full-image" : ""}`}>
-        {fullImage ? <Image src="/images/verdilock-full.webp" alt="Verdilock cybersecurity landing page and pricing design" fill unoptimized sizes="(max-width: 760px) 95vw, (max-width: 1100px) 75vw, 1136px" /> : <>
+        {fullImage ? <Image src={fullImageSource} alt={`${project.title} digital product and interface design`} fill unoptimized sizes="(max-width: 760px) 95vw, (max-width: 1100px) 75vw, 1136px" /> : <>
         <span className="atelier-stage-word" aria-hidden="true">{project.title}</span>
         <motion.div className="atelier-artwork" style={reduce ? undefined : { y, scale }}><Image src={project.image} alt={`${project.title} digital product and interface design`} width={project.imageWidth ?? 1500} height={project.imageHeight ?? 952} sizes="(max-width: 760px) 90vw, 65vw" /></motion.div>
         </>}
