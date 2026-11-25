@@ -64,7 +64,8 @@
 :root[data-theme] .portfolio-home .hero { background: var(--hero-bg); color: var(--ink); }
 :root[data-theme] .portfolio-home .hero::after { background: linear-gradient(90deg, var(--hero-bg) 0%, var(--hero-bg) 31%, rgba(var(--hero-rgb), .92) 40%, rgba(var(--hero-rgb), .27) 55%, transparent 72%), linear-gradient(0deg, var(--hero-bg), transparent 20%); }
 :root[data-theme] .portfolio-home .hero-portrait::after { background: linear-gradient(90deg, var(--hero-bg), transparent 18%, transparent 85%, var(--hero-bg)), linear-gradient(0deg, var(--hero-bg), transparent 20%); }
-:root[data-theme] .hero-kicker, :root[data-theme] .portfolio-home .hero-description, :root[data-theme] .portfolio-home .hero-supporting { color: var(--muted); }
+:root[data-theme] .hero-kicker, :root[data-theme] .portfolio-home .hero-description, :root[data-theme] .portfolio-home .hero-supporting, :root[data-theme] .hero-title-lead, :root[data-theme] .hero-tags li { color: var(--muted); }
+:root[data-theme] .hero-tags li { border-color: var(--line); }
 :root[data-theme] .hero-secondary { color: var(--ink); border-color: var(--line); }
 :root[data-theme] .hero-primary { background: var(--button-bg); color: var(--button-text); }
 :root[data-theme] .hero-primary:hover { background: var(--accent); color: var(--paper); }
