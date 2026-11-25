@@ -2,7 +2,7 @@ import Image from "next/image";
 import heroPortrait from "@/public/images/waleed-portrait.webp";
 import aboutPortrait from "@/public/images/waleed-portrait.jpg";
 import Link from "next/link";
-import { capabilities, disciplines, faqs, identity, originalMessaging, pricing, projects, services, toolkit, workflow } from "@/data/site";
+import { aboutIntro, capabilities, contactDetails, disciplines, faqs, identity, originalMessaging, pricing, projects, services, toolkit, trustStats, workflow } from "@/data/site";
 import { Arrow, ButtonLink, SectionHeading } from "@/components/ui";
 import { ServiceList } from "@/components/service-list";
 import { Testimonials } from "@/components/testimonials";
@@ -15,7 +15,9 @@ import { ScrollText } from "@/components/scroll-text";
 import { WorkCarousel } from "@/components/work-carousel";
 import { RollingText } from "@/components/rolling-text";
 import { ProductizedOffers } from "@/components/productized-offers";
-import { HeroHeading } from "@/components/hero-heading";
+import { ClientChallenges } from "@/components/client-challenges";
+import { WhyWorkWithMe } from "@/components/why-work-with-me";
+import { BuyingPaths } from "@/components/buying-paths";
 
 // Set to true to show the complete My skills section again.
 const showSkillsSection = false;
@@ -24,27 +26,33 @@ const showRecentWorkSection = false;
 // Set to true to restore the Monthly and Fixed project pricing plans.
 const showPartnershipPlans = false;
 
+const heroTags = ["Brand identity", "Web design & development", "Product design", "SaaS & MVPs"];
+
 function Hero() {
   return <section className="hero" id="home" data-nav-theme="dark" aria-labelledby="hero-title">
     <div className="hero-portrait"><Image src={heroPortrait} alt="Waleed, the product designer behind Serveekay" fill preload sizes="(max-width: 760px) 100vw, 60vw" /></div>
     <div className="container hero-content"><div className="hero-copy" data-reveal>
-      <p className="hero-kicker"><span /> Independent product designer</p>
-      <HeroHeading />
+      <p className="hero-kicker"><span />Independent design &amp; development partner</p>
+      <h1 id="hero-title" className="hero-title">
+        <span className="hero-title-lead">From a bold idea to a</span>
+        digital product<br />people <em>love.</em>
+      </h1>
       <p className="hero-description hero-supporting">
-        I help startups and founders turn complex ideas into clear, user-friendly digital products through strategy, UI/UX design, and development.
+        I help startups, founders, and businesses build distinctive brands, high-converting websites, and powerful digital products through strategy, design, and development.
       </p>
-      <div className="hero-actions"><Link className="hero-primary" href="/contact">Discuss your project<span aria-hidden="true">↗</span></Link><a className="hero-secondary" href="#work">View selected work<span aria-hidden="true">↓</span></a></div>
+      <ul className="hero-tags">{heroTags.map(tag => <li key={tag}>{tag}</li>)}</ul>
+      <div className="hero-actions"><Link className="hero-primary" href="/contact">Start a project<span aria-hidden="true">↗</span></Link><a className="hero-secondary" href="#work">Explore selected work<span aria-hidden="true">↓</span></a></div>
     </div></div>
     <ProjectMarquee />
   </section>;
 }
 
-function InquiryStrip() {
-  return <section className="inquiry-strip" data-nav-theme="light" aria-label="Start a project"><div className="container inquiry-strip-grid">
-    <div><p className="eyebrow">/ {identity.studio}</p><h2>{originalMessaging.introduction}</h2><p className="availability"><span />{identity.availability}</p></div>
-    <span className="inquiry-arrow" aria-hidden="true">→</span>
-    <div><h3>Let&apos;s talk</h3><form action="/contact" method="get" className="quick-inquiry"><label className="sr-only" htmlFor="inquiry-email">Email address</label><input id="inquiry-email" type="email" name="email" placeholder="Email address" autoComplete="email" required /><button type="submit" className="button"><RollingText text="Start a project" /><Arrow diagonal={false} /></button></form><div className="inquiry-strip-links"><span>Have a product, a fresh idea, or a question?</span><a href="#work">Explore selected work ↓</a></div></div>
-  </div></section>;
+function TrustBar() {
+  return <section className="container trust-bar" aria-label="Credibility at a glance">
+    <p className="eyebrow">/ Credibility at a glance</p>
+    <ul className="trust-stats">{trustStats.map(stat => <li key={stat.label}><strong>{stat.value}</strong><span>{stat.label}</span></li>)}</ul>
+    <div className="trust-disciplines"><p className="eyebrow">/ How I can help</p><div className="discipline-strip">{disciplines.map(discipline => <span key={discipline}>{discipline}</span>)}</div></div>
+  </section>;
 }
 
 function About() {
@@ -55,16 +63,16 @@ function About() {
     { src: "/images/hero-03.jpg", alt: "Serveekay web interface design" },
   ];
   return <section className="section warm-panel about-section" id="about" data-nav-theme="light"><span className="anchor-alias" id="aboutme" /><div className="container">
-    <p className="eyebrow">/ About me</p><PixelHeading lines={['Turning “meh”', 'into “WOW!”']} />
-    <p className="about-introduction">{originalMessaging.overview}</p>
+    <p className="eyebrow">/ About Waleed</p><PixelHeading lines={['The person behind', 'the pixels.']} />
+    <p className="about-introduction">{aboutIntro}</p>
     <div className="about-gallery" tabIndex={0} role="region" aria-label="Waleed and selected design work">{images.map(image => <figure key={typeof image.src === "string" ? image.src : image.src.src} data-gallery-card><Image src={image.src} alt={image.alt} fill loading={image.src === "/images/hero-01.jpg" ? "eager" : "lazy"} sizes="(max-width: 760px) 500px, 1000px" /></figure>)}</div>
-    <div className="about-editorial"><div className="about-highlight"><h3>Hey there! I&apos;m {identity.name}.</h3><ScrollText text="A product designer with a knack for turning “meh” into “WOW!” and solving user problems with creativity, thoughtful aesthetics, and clear product thinking." /><ScrollText text="When I’m not obsessing over pixels or user flows, I’m exploring design trends and finding better ways to make digital products feel intuitive." /><dl className="about-facts"><div><dt>Based in</dt><dd>{identity.location}</dd></div><div><dt>Focus</dt><dd>{identity.role}</dd></div></dl><ButtonLink href="/contact">More about your project?</ButtonLink></div><AboutStory /></div>
+    <div className="about-editorial"><div className="about-highlight"><h3>Hey there! I&apos;m {identity.name}.</h3><ScrollText text="I'm an independent product and visual designer with 7+ years of experience helping businesses turn ideas into meaningful digital experiences." /><ScrollText text="From building brand identities to designing SaaS platforms and websites, I enjoy combining creative thinking with practical problem-solving — and staying involved from the first sketch through to the build." /><dl className="about-facts"><div><dt>Based in</dt><dd>{identity.location}</dd></div><div><dt>Focus</dt><dd>{identity.role}</dd></div><div><dt>Experience</dt><dd>{identity.experience}</dd></div></dl><div className="about-extra"><p><span>Tools</span>{toolkit.join(" · ")}</p><p><span>Working style</span>Discovery, design, and development in one connected flow, with direct communication and clear milestones.</p></div><div className="about-links"><ButtonLink href="/contact">Start a project</ButtonLink>{identity.linkedin && <a className="about-linkedin" href={identity.linkedin} rel="me noopener noreferrer" target="_blank">Connect on LinkedIn <span aria-hidden="true">↗</span></a>}</div></div><AboutStory /></div>
   </div></section>;
 }
 
 function Work() {
   return <section className="atelier-work" id="work" data-nav-theme="dark" aria-labelledby="atelier-title"><span className="anchor-alias" id="portfolio" /><span className="anchor-alias" id="projects" /><div className="atelier-container">
-    <div className="atelier-masthead"><span><i />Independent design / Selected work</span><span>Digital experiences, made with intention.</span></div>
+    <div className="atelier-masthead"><span><i />Independent design / Selected work</span><span>Real problems. Thoughtful solutions.</span></div>
     <header className="atelier-heading"><div><p className="atelier-small">A few things I put my heart into</p><h2 id="atelier-title">Selected<br /><em>work.</em><sup>({String(projects.filter(project => project.image).length).padStart(2, "0")})</sup></h2></div><div className="atelier-heading-aside"><span className="atelier-heading-star" aria-hidden="true">&#10035;</span><p>From the first idea to the final interaction. A collection of brands, products, and digital worlds brought to life.</p><a href="#atelier-projects">Scroll into the details <span aria-hidden="true">&darr;</span></a></div></header>
     <WorkCarousel projects={projects} />
     {projects.filter(project => !project.image).map(project => <Link className="atelier-upcoming" href={`/work/${project.slug}`} key={project.slug}><span className="atelier-small">On the drawing board</span><h3>{project.title}</h3><span>{project.description}</span><Arrow /></Link>)}
@@ -80,8 +88,8 @@ function RecentWork() {
 
 function Process() {
   const images = ["/images/service-consulting.webp", "/images/service-design-system.webp", "/images/service-mobile.webp", "/images/service-web.webp"];
-  return <section className="section process-section" id="process" data-nav-theme="light"><div className="container"><SectionHeading label="The process">A clear path from idea to delivery</SectionHeading><p className="process-introduction">Strategy, design, and delivery come together around what the product actually needs. Each stage stays focused, collaborative, and easy to follow.</p>
-    <div className="process-resources">{workflow.map((step, index) => <article className="resource-card" key={step.index} data-reveal><div className="resource-image"><Image src={images[index]} alt={`${step.title} design process illustration`} fill sizes="(max-width: 760px) 78vw, 23vw" /><span>{step.index}</span></div><div className="resource-copy"><h3>{step.title}</h3><p>{step.detail}</p><Link href="/contact"><RollingText text="Start a project" /><Arrow diagonal={false} /></Link></div></article>)}</div>
+  return <section className="section process-section" id="process" data-nav-theme="light"><div className="container"><SectionHeading label="The process" copy="A clear process, from the first conversation to launch. You always know what is happening, what comes next, and what you receive at each stage.">How we work<br /><em>together.</em></SectionHeading>
+    <div className="process-resources">{workflow.map((step, index) => <article className="resource-card" key={step.index} data-reveal><div className="resource-image"><Image src={images[index]} alt={`${step.title} design process illustration`} fill sizes="(max-width: 760px) 78vw, 23vw" /><span>{step.index}</span></div><div className="resource-copy"><h3>{step.title}</h3><p>{step.detail}</p><p className="resource-receives"><span>You receive</span>{step.receives}</p><Link href="/contact"><RollingText text="Let's work together" /><Arrow diagonal={false} /></Link></div></article>)}</div>
   </div></section>;
 }
 
@@ -95,6 +103,7 @@ function Pricing() {
     <div className="heading-row"><SectionHeading label="Ways to work">Your project.<br /><em>Our partnership.</em></SectionHeading><p>A focused solution shaped around your project.</p></div>
     <div className="pricing-grid">{pricing.map((plan, index) => <article className={`price-plan${index === 0 ? " price-plan--dark" : ""}`} key={plan.label} data-reveal><div className="price-plan__top"><h3>{plan.label}</h3><span>{plan.note}</span></div><p className="price-value">{plan.price}{index === 0 && <small> / month</small>}</p><p>{plan.subtitle}</p><ul>{plan.features.map(feature => <li key={feature}>{feature}</li>)}</ul><ButtonLink href="/contact" light={index === 0}>Start a project</ButtonLink></article>)}</div>
     </>}
+    <BuyingPaths />
     <ProductizedOffers />
   </div></section>;
 }
@@ -102,19 +111,15 @@ function Pricing() {
 export function PortfolioHome() {
   return <div className="portfolio-home">
     <Hero />
-    <section className="container trust-bar" aria-label="Areas of expertise">
-      <p className="eyebrow">/ How I can help</p>
-      <div className="discipline-strip">
-        {disciplines.map((discipline) => (
-          <span key={discipline}>{discipline}</span>
-        ))}
-      </div>
-    </section>
-    <InquiryStrip />
-    <section className="section container split-section" id="services" data-nav-theme="light"><header className="section-heading" data-reveal><h2 className="services-display-heading">My<br /><em>services.</em></h2></header><ServiceList /></section>
-    <About /><Work />{showRecentWorkSection && <RecentWork />}<Process />{showSkillsSection && <Skills />}<MediaShowcase /><Pricing />
-    <section className="section container split-section" id="testimonials" data-nav-theme="light"><SectionHeading label="Kind words">A little love<br />from <em>clients.</em></SectionHeading><Testimonials /></section>
-    <section className="section container split-section faq-section" id="faqs" data-nav-theme="light"><SectionHeading label="Need to know">FAQ&apos;s &amp;<br /><em>shenanigans.</em></SectionHeading><div className="faq-list">{faqs.map(([question, answer], index) => <details name="faqs" key={question} data-reveal><summary><span className="faq-number">0{index + 1}</span><h3>{question}</h3><span className="disclosure-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></section>
-    <section className="section contact-section" id="contact" data-nav-theme="light"><div className="container contact-grid"><div><SectionHeading label="Get in touch">Let&apos;s<br /><em>connect.</em></SectionHeading><p>Have a product, a fresh idea, or a question? I&apos;d love to hear about it.</p><a className="contact-email" href={`mailto:${identity.email}`}>{identity.email} ↗</a><div className="contact-original"><h3>{originalMessaging.contactTitle}</h3><p>{originalMessaging.contactCopy}</p></div></div><ContactForm /></div></section>
+    <TrustBar />
+    <ClientChallenges />
+    <section className="section container split-section" id="services" data-nav-theme="light"><header className="section-heading" data-reveal><p className="eyebrow">/ Services</p><h2 className="services-display-heading">My<br /><em>services.</em></h2><p className="section-copy">Three core offers — brand identity, websites, and product design and development. Consulting and design systems are included where they support the work.</p></header><ServiceList /></section>
+    <Work />{showRecentWorkSection && <RecentWork />}
+    <WhyWorkWithMe />
+    <Process />{showSkillsSection && <Skills />}<MediaShowcase /><Pricing />
+    <section className="section container split-section" id="testimonials" data-nav-theme="light"><SectionHeading label="Kind words">Good work speaks.<br />Happy clients <em>say more.</em></SectionHeading><Testimonials /></section>
+    <About />
+    <section className="section container split-section faq-section" id="faqs" data-nav-theme="light"><SectionHeading label="Need to know" copy="Everything clients usually ask before starting a project — scope, investment, timelines, and collaboration.">Questions before<br /><em>getting started?</em></SectionHeading><div className="faq-list">{faqs.map(([question, answer], index) => <details name="faqs" key={question} data-reveal><summary><span className="faq-number">0{index + 1}</span><h3>{question}</h3><span className="disclosure-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></section>
+    <section className="section contact-section" id="contact" data-nav-theme="light"><div className="container contact-grid"><div><SectionHeading label="Your next project">Have something in mind?<br /><em>Let&apos;s make it happen.</em></SectionHeading><p>Tell me a little about your project, what you&apos;re looking to achieve, and where you are in the process. I&apos;ll review your requirements and come back with the next steps.</p><a className="contact-email" href={`mailto:${identity.email}`}>{identity.email} ↗</a><div className="contact-expectation"><p>{identity.responseTime}</p><p>{identity.availability}</p>{contactDetails.whatsapp && <a href={`https://wa.me/${contactDetails.whatsapp.replace(/[^0-9]/g, "")}`} target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a>}</div></div><ContactForm /></div></section>
   </div>;
 }

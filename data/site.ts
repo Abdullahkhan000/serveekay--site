@@ -18,13 +18,39 @@ export const identity = {
   email: "hiserveekay@gmail.com",
   location: "Pakistan",
   availability: "Available for selected projects",
+  experience: "7+ years of experience",
+  responseTime: "I reply within 1–2 business days.",
+  // TODO: fill these in and the links will appear automatically across the site.
+  linkedin: "",
+  instagram: "",
+  whatsapp: "",
+  booking: "",
 };
 
 export const navigation = [
   { href: "/#work", label: "Works" },
   { href: "/#services", label: "Services" },
+  { href: "/#pricing", label: "Pricing" },
   { href: "/#about", label: "About" },
   { href: "/contact", label: "Contact" },
+] as const;
+
+export const contactDetails = {
+  email: identity.email,
+  responseWindow: "within 1–2 business days",
+  whatsapp: identity.whatsapp,
+  linkedin: identity.linkedin,
+  instagram: identity.instagram,
+  booking: identity.booking,
+} as const;
+
+// Trust bar: keep these claims honest. Swap the labels for verified numbers
+// (for example "500+ projects delivered") once you can back them up.
+export const trustStats = [
+  { value: "7+", label: "Years of experience" },
+  { value: "Design + build", label: "One connected partner" },
+  { value: "International", label: "Clients and teams" },
+  { value: "End-to-end", label: "Strategy to delivery" },
 ] as const;
 
 export const disciplines = [
@@ -39,8 +65,8 @@ export const serviceMessaging = {
   label: "My services",
   prompt: "Have an idea?",
   direction: "Let's find the right direction.",
-  headline: "Have an idea? Let's find the right direction.",
-  description: "Consulting, Design System, Web Design + Dev, Mobile App Design + Dev, and Branding.",
+  headline: "Design and development, built around your business.",
+  description: "An independent design and development partner helping startups, founders, and businesses build distinctive brands, high-performing websites, and useful digital products.",
 } as const;
 
 export const projects: Project[] = [
@@ -56,11 +82,9 @@ export const projects: Project[] = [
 ];
 
 export const services = [
-  { number: "01", title: "Consulting", tags: "Strategy · UX audit · Product direction", description: "Expert UI/UX consulting to identify design gaps, improve user experience, and align with your business goals.", image: "/images/service-consulting.webp" },
-  { number: "02", title: "Design System", tags: "Components · Tokens · Guidelines", description: "Scalable design systems with reusable components, typography, and color guidelines.", image: "/images/service-design-system.webp" },
-  { number: "03", title: "Web Design + Dev", tags: "UX/UI · Responsive · Conversion", description: "Custom web apps and landing pages that are user-focused, visually polished, and conversion-optimized.", image: "/images/service-web.webp" },
-  { number: "04", title: "Mobile App Design + Dev", tags: "iOS · Android · Product design", description: "Custom mobile app design tailored for iOS and Android—intuitive, user-friendly, and aligned with your brand.", image: "/images/service-mobile.webp" },
-  { number: "05", title: "Branding", tags: "Identity · Visual language · Direction", description: "Professional branding that captures your unique vision and turns it into a distinctive, memorable identity.", image: "/images/service-branding.webp" },
+  { number: "01", title: "Brand Identity & Strategy", tags: "Logo · Visual identity · Brand guidelines · Launch assets", description: "Build a memorable brand with a consistent visual identity that communicates your value and makes the business recognisable.", image: "/images/service-branding.webp" },
+  { number: "02", title: "Websites & Digital Experiences", tags: "Landing pages · Business websites · Development", description: "Create a website that explains what you do clearly, drives action, and turns visitors into customers.", image: "/images/service-web.webp" },
+  { number: "03", title: "Product Design & Development", tags: "SaaS · Dashboards · Mobile apps · MVPs · Design systems", description: "Design and build digital products that solve real user problems, from the first flow through to a working release.", image: "/images/service-mobile.webp" },
 ];
 
 export const capabilities = [
@@ -69,10 +93,120 @@ export const capabilities = [
   { title: "Design + build", description: "A connected process from early ideas through polished, responsive delivery.", mark: "03" },
 ] as const;
 
-export const testimonials = [
-  { quote: "I recently worked with Waleed for the UI design of my web app, and he did an exceptional job. His attention to detail and intuitive design skills greatly enhanced the user experience and visual appeal of the app.", name: "Meelaad Mashaw", role: "Founder, EASYWAYSEO", initials: "MM", fullQuote: "I recently worked with Waleed for the UI design of my web app, and he did an exceptional job. His attention to detail and intuitive design skills greatly enhanced the user experience and visual appeal of the app. I highly recommend him for UI design projects due to his professionalism and creativity." },
-  { quote: "This UX designer is amazing. Waleed is talented, pays attention to details, and designed it exactly how I envisioned it. Working with him is a true testament to bringing a vision to life.", name: "Morgan Shuller", role: "CTO, CocheVia", initials: "MS", fullQuote: "This UX DESIGNER IS AMAZING 🤩! He is #1 in design! I am highly impressed and satisfied with the design. Waleed is amazing and talented. He pays attention to details and he designed it EXACTLY how I visioned it to be. Working with him is a true testament of bringing a vision to life !!!" },
+export const clientChallenges = [
+  {
+    number: "01",
+    title: "Launching a new brand?",
+    description: "Build a distinctive identity that communicates your value and makes the business memorable from day one.",
+    cta: "Explore brand identity",
+    href: "/#services",
+  },
+  {
+    number: "02",
+    title: "Need a better website?",
+    description: "Create a digital experience that explains what you do clearly and turns visitors into customers.",
+    cta: "Explore websites",
+    href: "/#pricing",
+  },
+  {
+    number: "03",
+    title: "Building a digital product?",
+    description: "Turn an idea for an app, SaaS platform, dashboard, or MVP into a functional, intuitive product.",
+    cta: "Explore product design",
+    href: "/#services",
+  },
+  {
+    number: "04",
+    title: "Need ongoing design support?",
+    description: "Get a reliable design and development partner who keeps improving the product as the business grows.",
+    cta: "Explore partnerships",
+    href: "/#pricing",
+  },
 ] as const;
+
+export const differentiators = [
+  {
+    number: "01",
+    title: "Business-first thinking",
+    description: "Every design decision starts with your goals, your users, and what the business actually needs next.",
+  },
+  {
+    number: "02",
+    title: "Direct collaboration",
+    description: "You work directly with the person responsible for your project. No account managers, no hand-offs.",
+  },
+  {
+    number: "03",
+    title: "Design meets development",
+    description: "A connected workflow from first concepts through to implementation, so nothing gets lost in translation.",
+  },
+  {
+    number: "04",
+    title: "Built to scale",
+    description: "Thoughtful systems, components, and foundations that support the product well beyond launch.",
+  },
+] as const;
+
+export const buyingPaths = [
+  {
+    number: "01",
+    title: "Brand & Launch",
+    summary: "Build a brand people remember.",
+    detail: "Brand identity, visual systems, guidelines, and launch assets for new businesses and repositioning projects.",
+    price: "$1,000–$2,000+",
+    timeline: "1–2 weeks",
+    items: ["Logo and visual identity", "Color and typography system", "Brand guidelines and assets"],
+    popular: false,
+  },
+  {
+    number: "02",
+    title: "Website & Conversion",
+    summary: "Turn visitors into customers.",
+    detail: "Landing pages and business websites, designed and built to communicate value and generate inquiries.",
+    price: "$1,500–$6,000+",
+    timeline: "1–5 weeks",
+    items: ["Page structure and UX", "High-fidelity UI design", "Responsive build and deployment"],
+    popular: true,
+  },
+  {
+    number: "03",
+    title: "SaaS & Product Build",
+    summary: "Build your next digital product.",
+    detail: "SaaS platforms, dashboards, mobile applications, and MVPs taken from idea to a working first version.",
+    price: "$4,000–$15,000+",
+    timeline: "4–12+ weeks",
+    items: ["Product discovery and scope", "UX/UI and prototype", "Design plus development"],
+    popular: false,
+  },
+] as const;
+
+export const partnershipPath = {
+  title: "Ongoing partnership",
+  summary: "Keep the product moving every month.",
+  detail: "Flexible design and development capacity for teams that need a reliable partner without hiring every role full-time.",
+  price: "$3,000–$6,000+",
+  unit: "/ month",
+} as const;
+
+export const testimonials = [
+  {
+    quote: "I recently worked with Waleed for the UI design of my web app, and he did an exceptional job. His attention to detail and intuitive design skills greatly enhanced the user experience and visual appeal of the app.",
+    name: "Meelaad Mashaw",
+    role: "Founder, EASYWAYSEO",
+    projectType: "Web app UI design",
+    initials: "MM",
+    fullQuote: "I recently worked with Waleed for the UI design of my web app, and he did an exceptional job. His attention to detail and intuitive design skills greatly enhanced the user experience and visual appeal of the app. I highly recommend him for UI design projects due to his professionalism and creativity.",
+  },
+  {
+    quote: "This UX designer is amazing. Waleed is talented, pays attention to details, and designed it exactly how I envisioned it. Working with him is a true testament to bringing a vision to life.",
+    name: "Morgan Shuller",
+    role: "CTO, CocheVia",
+    projectType: "Mobile product design",
+    initials: "MS",
+    fullQuote: "This UX DESIGNER IS AMAZING 🤩! He is #1 in design! I am highly impressed and satisfied with the design. Waleed is amazing and talented. He pays attention to details and he designed it EXACTLY how I visioned it to be. Working with him is a true testament of bringing a vision to life !!!",
+  },
+] as const;
+
 
 export const pricing = [
   { label: "Monthly", price: "$3000", subtitle: "Monthly Design Partnership (billed per month)", note: "2 spots remaining", features: ["Ongoing design support for any project", "Flexible scope with clear timelines and deliverables", "Fast turnarounds with 1–2 day revisions", "Strategic kickoff call to plan your project", "Weekly calls + private Slack"] },
@@ -80,14 +214,17 @@ export const pricing = [
 ] as const;
 
 export const faqs = [
-  ["What’s my design delivery process?", "Each project starts with a clear brief and timeline. After research and wireframing, I move to high-fidelity designs and iterate based on your feedback. Deliverables are shared in organized Figma files, ready for development."],
-  ["How does the Monthly Design Partnership work?", "You get access to dedicated design hours every month. Request tasks anytime—whether it’s UI screens, web layouts, or app flows. Work is queued, delivered on a rolling basis, and refined through unlimited revisions."],
-  ["What if I’m not satisfied with the designs?", "No worries. I offer unlimited revisions within the monthly cycle and keep refining the work until it aligns with your vision and user goals."],
-  ["How do I share feedback?", "You can leave comments directly in Figma, or send feedback via Notion, email, or your preferred tool. I’m flexible and respond quickly to keep things moving."],
-  ["Is there a limit to what I can request?", "There’s no limit to how many design tasks you can request. They’re handled one at a time with clear priorities and realistic turnaround times."],
-  ["Can we schedule calls during the project?", "Absolutely. We can schedule regular check-ins, kickoff meetings, or review calls to ensure we’re aligned at every step of the process."],
-  ["Why choose monthly instead of fixed projects?", "Monthly partnerships offer flexibility, consistency, and faster turnarounds. You get ongoing design support without renegotiating scope or cost each time."],
+  ["What services do you offer?", "Brand identity, websites and landing pages, SaaS and product design, mobile app design, and ongoing design partnerships. Design and development can be delivered together, so the work stays connected from first concept to launch."],
+  ["Do you offer design-only work?", "Yes. Some clients need UI design and a development-ready handoff, while others want design and implementation delivered together. Both are available, and your proposal states clearly which one you are getting."],
+  ["What is the typical investment for a project?", "Brand identity starts at $1,000, landing pages at $1,500, business websites at $3,000, SaaS dashboards at $4,000, and MVPs at $5,000. Ongoing partnerships start at $3,000 per month. Every proposal confirms the exact scope, deliverables, and timeline before kickoff."],
+  ["How long does a project take?", "A landing page usually takes 1–2 weeks, a business website 3–5 weeks, a SaaS dashboard 4–8+ weeks, and an MVP 6–12+ weeks. Timelines depend on scope, content readiness, and how quickly feedback comes back."],
+  ["How many revisions are included?", "Each project includes a defined number of review rounds at agreed milestones, plus refinement within the agreed scope. Revision rounds are confirmed in your proposal so expectations stay clear on both sides."],
+  ["How do payments and milestones work?", "Projects are split into milestones agreed before kickoff — typically a deposit to schedule the work and the remainder on delivery. Monthly partnerships are billed per cycle, with capacity and cancellation terms confirmed in writing."],
+  ["Can you work with an existing team?", "Yes. I regularly work alongside in-house designers and developers, taking on the design or build work that the team needs, and hand off organized files and documentation so the work continues smoothly."],
+  ["Do you work with international clients?", "Yes. Projects are run remotely with clients across different time zones, using async updates, shared boards, and calls arranged around your working hours."],
+  ["What happens after I submit a project inquiry?", "You will get a reply within 1–2 business days. If the project looks like a good fit, we arrange a short discovery call, then you receive a proposal with scope, timeline, and investment. If it is not a fit, you will hear that straight away."],
 ] as const;
+
 
 // Drop your video into /public/media and update these two values.
 // Keep VIDEO_SRC empty until a real video is supplied; the component will use the poster.
@@ -95,18 +232,21 @@ export const VIDEO_SRC = "";
 export const VIDEO_POSTER = "/images/hero-04.webp";
 
 export const workflow = [
-  { index: "01", title: "Discovery", detail: "Goals, users, constraints, and the product direction." },
-  { index: "02", title: "UX design", detail: "Flows and structure shaped around clear user needs." },
-  { index: "03", title: "UI design", detail: "A polished visual system with purposeful interaction." },
-  { index: "04", title: "Delivery", detail: "Responsive design, organized files, and build-ready details." },
+  { index: "01", title: "Discovery & Strategy", detail: "We discuss your goals, audience, challenges, scope, and expectations.", receives: "A clear brief, scope, and timeline" },
+  { index: "02", title: "Planning & Direction", detail: "We establish the structure, user journeys, creative direction, and project roadmap.", receives: "Site map, flows, and visual direction" },
+  { index: "03", title: "Design & Development", detail: "Your project comes to life through collaborative design and implementation.", receives: "Approved designs and a working build" },
+  { index: "04", title: "Review & Launch", detail: "We refine, test, deliver, and prepare everything for launch.", receives: "Tested release, files, and handoff" },
 ] as const;
 
+
 // Original long-form copy retained from the repository's original index.html.
+export const aboutIntro = "I'm Waleed — an independent product and visual designer working with startups, founders, and growing businesses. Over the past 7+ years I've designed brands, websites, dashboards, and mobile products, and I stay involved from the first idea through to the build.";
+
 export const biography = [
   'Hey there!',
-  'I’m WALEED, a product designer with a knack for turning "meh" into "WOW!" and solving user problems with a sprinkle of creativity, a dash of aesthetics, and just the right amount of why didn’t I think of that?',
-  'When I’m not obsessing over pixels or user flows, you’ll probably find me geeking out over the latest design trends or convincing my clients that yes, good design can make you happier—just like a solid workout (speaking of which, pro tip: squats and sans-serifs both work wonders for your bottom line).',
-  'Let’s make things look awesome, work seamlessly, and maybe even burn a few calories from all the excitement. Ready to create something unforgettable? Let’s Chat.',
+  'I’m WALEED, an independent product and visual designer. For the last 7+ years I’ve helped founders and growing teams turn ideas into brands, websites, and digital products that people actually use.',
+  'Most projects start with the business problem behind the design — who the customer is, what they need to understand, and what the product has to do. From there I shape the structure, the visual direction, and the build that follows.',
+  'I keep the process direct and collaborative: clear milestones, honest feedback, and one person accountable from the first conversation through to launch. If that sounds like the kind of partner you’re looking for, let’s talk.',
 ] as const;
 
 export const originalMessaging = {

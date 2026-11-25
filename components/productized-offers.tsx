@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 
 const offers = [
   {
@@ -73,7 +73,7 @@ export function ProductizedOffers() {
         <div className="offer-delivery"><h5>Delivery options</h5><p>{offer.options.join(" • ")}</p></div>
         <h5>Scope notes</h5><p>{offer.scope}</p>
       </details>
-      <Link className="offer-cta" href="/contact"><span>Discuss your project</span><span className="offer-cta-arrow" aria-hidden="true">↗</span></Link>
+      <Link className="offer-cta" href="/contact"><span>Get started</span><span className="offer-cta-arrow" aria-hidden="true">↗</span></Link>
     </article>)}</div>
     <p className="offers-note">Prices and timelines are indicative. Your proposal confirms deliverables, delivery options, capacity, revision rounds, dependencies, and completion criteria. Optional features, third-party costs, and additional scope are agreed separately.</p>
   </div>;
