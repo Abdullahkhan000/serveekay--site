@@ -722,3 +722,41 @@ a:is(:hover,:focus-visible) .rolling-copy > span, button:is(:hover,:focus-visibl
   .work-section, .work-section.is-in-view { background: #191d1b; }
   .project-card:hover .project-card__open, .case-next:hover .case-next-arrow { transform: none; }
 }
+
+.trust-bar {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.trust-bar .eyebrow {
+  margin-bottom: 18px;
+}
+
+.trust-bar .discipline-strip {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 18px 30px;
+}
+
+@media (max-width: 760px) {
+  .trust-bar .discipline-strip {
+    gap: 14px 20px;
+    font-size: 14px;
+  }
+}
+
+
+.service-cta {
+  display: inline-block;
+  margin-top: 18px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  color: var(--ink);
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.service-cta:hover {
+  color: var(--accent);
+}

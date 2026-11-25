@@ -30,7 +30,9 @@ function Hero() {
     <div className="container hero-content"><div className="hero-copy" data-reveal>
       <p className="hero-kicker"><span /> Independent product designer</p>
       <HeroHeading />
-      <p className="hero-description hero-supporting">I collaborate with Startups &amp; Founders to help craft beautiful + functional digital experiences.</p>
+      <p className="hero-description hero-supporting">
+        I help startups and founders turn complex ideas into clear, user-friendly digital products through strategy, UI/UX design, and development.
+      </p>
       <div className="hero-actions"><Link className="hero-primary" href="/contact">Discuss your project<span aria-hidden="true">↗</span></Link><a className="hero-secondary" href="#work">View selected work<span aria-hidden="true">↓</span></a></div>
     </div></div>
     <ProjectMarquee />
@@ -99,7 +101,16 @@ function Pricing() {
 
 export function PortfolioHome() {
   return <div className="portfolio-home">
-    <Hero /><InquiryStrip />
+    <Hero />
+    <section className="container trust-bar" aria-label="Areas of expertise">
+      <p className="eyebrow">/ How I can help</p>
+      <div className="discipline-strip">
+        {disciplines.map((discipline) => (
+          <span key={discipline}>{discipline}</span>
+        ))}
+      </div>
+    </section>
+    <InquiryStrip />
     <section className="section container split-section" id="services" data-nav-theme="light"><header className="section-heading" data-reveal><h2 className="services-display-heading">My<br /><em>services.</em></h2></header><ServiceList /></section>
     <About /><Work />{showRecentWorkSection && <RecentWork />}<Process />{showSkillsSection && <Skills />}<MediaShowcase /><Pricing />
     <section className="section container split-section" id="testimonials" data-nav-theme="light"><SectionHeading label="Kind words">A little love<br />from <em>clients.</em></SectionHeading><Testimonials /></section>
